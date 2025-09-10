@@ -1,7 +1,10 @@
 ---
 title: "김영한의 자바 기초 강의 - part 8"
 pubDate: 2025-08-31
+description: "김영한님의 자바 기초 강의 part 8(훈련) 학습 정리"
 ---
+
+> **출처**: [김영한의 자바 기초 강의](https://inf.run/PVx3u) - Section 8: 훈련
 
 ## 입력과 출력 (Input and Output)
 

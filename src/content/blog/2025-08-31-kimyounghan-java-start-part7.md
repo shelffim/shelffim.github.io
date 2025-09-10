@@ -1,7 +1,10 @@
 ---
 title: "김영한의 자바 기초 강의 - part 7"
 pubDate: 2025-08-30
+description: "김영한님의 자바 기초 강의 part 7(스코프와 형변환) 학습 정리"
 ---
+
+> **출처**: [김영한의 자바 기초 강의](https://inf.run/PVx3u) - Section 7: 스코프와 형변환
 
 ## 스코프와 형변환 (Scope and Type Casting)
 

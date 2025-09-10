@@ -1,7 +1,10 @@
 ---
 title: "김영한의 자바 기초 강의 - part 6"
 pubDate: 2025-08-30
+description: "김영한님의 자바 기초 강의 part 6(반복문) 학습 정리"
 ---
+
+> **출처**: [김영한의 자바 기초 강의](https://inf.run/PVx3u) - Section 6: 반복문
 
 ## 반복문 (Loop Statements)
 

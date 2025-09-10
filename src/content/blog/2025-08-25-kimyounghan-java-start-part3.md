@@ -1,7 +1,10 @@
 ---
 title: "김영한의 자바 기초 강의 - part 3"
 pubDate: 2025-08-25
+description: "김영한님의 자바 기초 강의 part 3(변수) 학습 정리"
 ---
+
+> **출처**: [김영한의 자바 기초 강의](https://inf.run/PVx3u) - Section 3: 변수
 
 ## 패키지 (Package)
 

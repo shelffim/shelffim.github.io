@@ -2,10 +2,9 @@
 title: "김영한의 자바 기초 강의 - part 4"
 pubDate: 2025-08-27
 description: "김영한님의 자바 기초 강의 part 4(연산자) 학습 정리"
+---
 
 > **출처**: [김영한의 자바 기초 강의](https://inf.run/PVx3u) - Section 4: 연산자
-
----
 
 ## 연산자 (Operators)
 

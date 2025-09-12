@@ -1,0 +1,198 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-bvzihdzo> <head><!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="sitemap" href="/sitemap-index.xml"><link rel="alternate" type="application/rss+xml" title="Astro Blog" href="https://shelffim.github.io/rss.xml"><meta name="generator" content="Astro v5.9.4"><!-- Font preloads --><link rel="preload" href="/fonts/atkinson-regular.woff" as="font" type="font/woff" crossorigin><link rel="preload" href="/fonts/atkinson-bold.woff" as="font" type="font/woff" crossorigin><!-- Canonical URL --><link rel="canonical" href="https://shelffim.github.io/blog/java-start/2025-09-01-kimyounghan-java-start-part10/"><!-- Primary Meta Tags --><title>김영한의 자바 기초 강의 - part 10: 메서드</title><meta name="title" content="김영한의 자바 기초 강의 - part 10: 메서드"><meta name="description" content="김영한님의 자바 기초 강의 part 10(메서드) 학습 정리"><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://shelffim.github.io/blog/java-start/2025-09-01-kimyounghan-java-start-part10/"><meta property="og:title" content="김영한의 자바 기초 강의 - part 10: 메서드"><meta property="og:description" content="김영한님의 자바 기초 강의 part 10(메서드) 학습 정리"><meta property="og:image" content="https://shelffim.github.io/_astro/blog-placeholder-1.Bx0Zcyzv.jpg"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://shelffim.github.io/blog/java-start/2025-09-01-kimyounghan-java-start-part10/"><meta property="twitter:title" content="김영한의 자바 기초 강의 - part 10: 메서드"><meta property="twitter:description" content="김영한님의 자바 기초 강의 part 10(메서드) 학습 정리"><meta property="twitter:image" content="https://shelffim.github.io/_astro/blog-placeholder-1.Bx0Zcyzv.jpg"><style>:root{--accent: #2337ff;--accent-dark: #000d8a;--black: 15, 18, 25;--gray: 96, 115, 159;--gray-light: 229, 233, 240;--gray-dark: 34, 41, 57;--gray-gradient: rgba(var(--gray-light), 50%), #fff;--box-shadow: 0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%), 0 16px 32px rgba(var(--gray), 33%)}@font-face{font-family:Atkinson;src:url(/fonts/atkinson-regular.woff) format("woff");font-weight:400;font-style:normal;font-display:swap}@font-face{font-family:Atkinson;src:url(/fonts/atkinson-bold.woff) format("woff");font-weight:700;font-style:normal;font-display:swap}body{font-family:Atkinson,sans-serif;margin:0;padding:0;text-align:left;background:linear-gradient(var(--gray-gradient)) no-repeat;background-size:100% 600px;word-wrap:break-word;overflow-wrap:break-word;color:rgb(var(--gray-dark));font-size:20px;line-height:1.7}main{width:720px;max-width:calc(100% - 2em);margin:auto;padding:3em 1em}h1,h2,h3,h4,h5,h6{margin:0 0 .5rem;color:rgb(var(--black));line-height:1.2}h1{font-size:3.052em}h2{font-size:2.441em}h3{font-size:1.953em}h4{font-size:1.563em}h5{font-size:1.25em}strong,b{font-weight:700}a,a:hover{color:var(--accent)}p{margin-bottom:1em}.prose p{margin-bottom:2em}textarea{width:100%;font-size:16px}input{font-size:16px}table{width:100%}img{max-width:100%;height:auto;border-radius:8px}code{padding:2px 5px;background-color:rgb(var(--gray-light));border-radius:2px}pre{padding:1.5em;border-radius:8px}pre>code{all:unset}blockquote{border-left:4px solid var(--accent);padding:0 0 0 20px;margin:0;font-size:1.333em}hr{border:none;border-top:1px solid rgb(var(--gray-light))}@media (max-width: 720px){body{font-size:18px}main{padding:1em}}.sr-only{border:0;padding:0;margin:0;position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px 1px 1px 1px);clip:rect(1px,1px,1px,1px);clip-path:inset(50%);white-space:nowrap}a[data-astro-cid-eimmu3lg]{display:inline-block;text-decoration:none}a[data-astro-cid-eimmu3lg].active{font-weight:bolder;text-decoration:underline}header[data-astro-cid-3ef6ksr2]{margin:0;padding:0 1em;background:#fff;box-shadow:0 2px 8px rgba(var(--black),5%)}h2[data-astro-cid-3ef6ksr2]{margin:0;font-size:1em}h2[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2],h2[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2].active{text-decoration:none}nav[data-astro-cid-3ef6ksr2]{display:flex;align-items:center;justify-content:space-between}nav[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2]{padding:1em .5em;color:var(--black);border-bottom:4px solid transparent;text-decoration:none}nav[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2].active{text-decoration:none;border-bottom-color:var(--accent)}.social-links[data-astro-cid-3ef6ksr2],.social-links[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2]{display:flex}@media (max-width: 720px){.social-links[data-astro-cid-3ef6ksr2]{display:none}}footer[data-astro-cid-sz7xmlte]{padding:2em 1em 6em;background:linear-gradient(var(--gray-gradient)) no-repeat;color:rgb(var(--gray));text-align:center}.social-links[data-astro-cid-sz7xmlte]{display:flex;justify-content:center;gap:1em;margin-top:1em}.social-links[data-astro-cid-sz7xmlte] a[data-astro-cid-sz7xmlte]{text-decoration:none;color:rgb(var(--gray))}.social-links[data-astro-cid-sz7xmlte] a[data-astro-cid-sz7xmlte]:hover{color:rgb(var(--gray-dark))}
+main[data-astro-cid-bvzihdzo]{width:calc(100% - 2em);max-width:100%;margin:0}.hero-image[data-astro-cid-bvzihdzo]{width:100%}.hero-image[data-astro-cid-bvzihdzo] img[data-astro-cid-bvzihdzo]{display:block;margin:0 auto;border-radius:12px;box-shadow:var(--box-shadow)}.prose[data-astro-cid-bvzihdzo]{width:720px;max-width:calc(100% - 2em);margin:auto;padding:1em;color:rgb(var(--gray-dark))}.title[data-astro-cid-bvzihdzo]{margin-bottom:1em;padding:1em 0;text-align:center;line-height:1}.title[data-astro-cid-bvzihdzo] h1[data-astro-cid-bvzihdzo]{margin:0 0 .5em}.date[data-astro-cid-bvzihdzo]{margin-bottom:.5em;color:rgb(var(--gray))}.last-updated-on[data-astro-cid-bvzihdzo]{font-style:italic}
+</style></head> <body data-astro-cid-bvzihdzo> <header data-astro-cid-3ef6ksr2> <nav data-astro-cid-3ef6ksr2> <h2 data-astro-cid-3ef6ksr2><a href="/" data-astro-cid-3ef6ksr2>Astro Blog</a></h2> <div class="internal-links" data-astro-cid-3ef6ksr2> <a href="/" data-astro-cid-3ef6ksr2="true" data-astro-cid-eimmu3lg> Home </a>  <a href="/blog" class="active" data-astro-cid-3ef6ksr2="true" data-astro-cid-eimmu3lg> Blog </a>  <a href="/about" data-astro-cid-3ef6ksr2="true" data-astro-cid-eimmu3lg> About </a>  </div> <div class="social-links" data-astro-cid-3ef6ksr2> <a href="https://m.webtoo.ls/@astro" target="_blank" data-astro-cid-3ef6ksr2> <span class="sr-only" data-astro-cid-3ef6ksr2>Follow Astro on Mastodon</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" data-astro-cid-3ef6ksr2><path fill="currentColor" d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" data-astro-cid-3ef6ksr2></path></svg> </a> <a href="https://twitter.com/astrodotbuild" target="_blank" data-astro-cid-3ef6ksr2> <span class="sr-only" data-astro-cid-3ef6ksr2>Follow Astro on Twitter</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" data-astro-cid-3ef6ksr2><path fill="currentColor" d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" data-astro-cid-3ef6ksr2></path></svg> </a> <a href="https://github.com/withastro/astro" target="_blank" data-astro-cid-3ef6ksr2> <span class="sr-only" data-astro-cid-3ef6ksr2>Go to Astro's GitHub repo</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" data-astro-cid-3ef6ksr2><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" data-astro-cid-3ef6ksr2></path></svg> </a> </div> </nav> </header>  <main data-astro-cid-bvzihdzo> <article data-astro-cid-bvzihdzo> <div class="hero-image" data-astro-cid-bvzihdzo>  </div> <div class="prose" data-astro-cid-bvzihdzo> <div class="title" data-astro-cid-bvzihdzo> <div class="date" data-astro-cid-bvzihdzo> <time datetime="2025-09-01T00:00:00.000Z"> Sep 1, 2025 </time>  </div> <h1 data-astro-cid-bvzihdzo>김영한의 자바 기초 강의 - part 10: 메서드</h1> <hr data-astro-cid-bvzihdzo> </div>  <blockquote>
+<p><strong>출처</strong>: <a href="https://inf.run/PVx3u">김영한의 자바 기초 강의</a> - Section 10: 메서드</p>
+</blockquote>
+<p>###메서드</p>
+<h2 id="메서드란">메서드란?</h2>
+<p>자바에서는 함수를 <strong>메서드</strong>라고 부릅니다. 메서드는 입력값을 받아서 처리한 후 출력값을 반환하는 기능을 수행합니다. 간단히 말해, 특정 작업을 수행하는 코드 블록을 하나의 단위로 묶어놓은 것입니다.</p>
+<h2 id="메서드-사용의-장점">메서드 사용의 장점</h2>
+<p>메서드를 사용하면 여러 가지 이점을 얻을 수 있습니다:</p>
+<ul>
+<li><strong>코드의 재사용성 향상</strong>: 한 번 작성한 메서드를 여러 곳에서 반복 사용할 수 있습니다</li>
+<li><strong>코드의 가독성 향상</strong>: 복잡한 로직을 의미 있는 이름의 메서드로 분리하여 코드를 이해하기 쉽게 만듭니다</li>
+<li><strong>모듈성 향상</strong>: 기능별로 코드를 분리하여 구조화된 프로그램을 만들 수 있습니다</li>
+<li><strong>유지보수 용이성</strong>: 특정 기능을 수정할 때 해당 메서드만 수정하면 됩니다</li>
+<li><strong>확장성 향상</strong>: 새로운 기능을 추가하거나 기존 기능을 확장하기 쉬워집니다</li>
+<li><strong>추상화</strong>: 복잡한 내부 구현을 숨기고 간단한 인터페이스만 제공합니다</li>
+<li><strong>테스트와 디버깅 용이성</strong>: 각 메서드를 독립적으로 테스트하고 디버깅할 수 있습니다</li>
+</ul>
+<h2 id="메서드-선언-방법">메서드 선언 방법</h2>
+<p>메서드는 다음과 같은 형태로 선언합니다:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> static</span><span style="color:#F97583"> int</span><span style="color:#B392F0"> add</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> a, </span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> b) {</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> a </span><span style="color:#F97583">+</span><span style="color:#E1E4E8"> b;</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>메서드의 각 구성 요소를 살펴보면:</p>
+<ul>
+<li><code>public</code>: 접근 제어자 (누구나 사용할 수 있음)</li>
+<li><code>static</code>: 클래스 메서드 (객체 생성 없이 사용 가능)</li>
+<li><code>int</code>: 반환 타입 (정수를 반환)</li>
+<li><code>add</code>: 메서드 이름 (동사로 시작)</li>
+<li><code>int a, int b</code>: 매개변수, 파라미터 (입력값)</li>
+<li><code>{}</code>: 메서드 본문 (실제 로직이 들어가는 부분)</li>
+<li><code>return a + b</code>: 반환 값 (결과를 반환)</li>
+</ul>
+<p><strong>네이밍 규칙</strong>:</p>
+<ul>
+<li>변수명은 명사로 시작</li>
+<li>메서드명은 동사로 시작</li>
+</ul>
+<h2 id="메서드-호출-방법">메서드 호출 방법</h2>
+<p>선언한 메서드는 다음과 같이 호출할 수 있습니다:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">int</span><span style="color:#E1E4E8"> result </span><span style="color:#F97583">=</span><span style="color:#B392F0"> add</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(result);</span></span></code></pre>
+<p>여기서 <code>(1, 2)</code>는 **인수(인자)**라고 부릅니다. 메서드를 호출할 때는 인수의 값과 타입이 매개변수의 값과 타입과 정확히 맞아야 합니다.</p>
+<p>또한 중요한 점은 메서드 호출이 끝나면 매개변수와 메서드 본문 내에서 사용된 변수들이 메모리에서 사라진다는 것입니다.</p>
+<h2 id="매개변수가-없는-메서드">매개변수가 없는 메서드</h2>
+<p>매개변수가 필요 없는 메서드도 만들 수 있습니다:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> static</span><span style="color:#E1E4E8"> String </span><span style="color:#B392F0">printHello</span><span style="color:#E1E4E8">() {</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#9ECBFF"> "Hello"</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">String result </span><span style="color:#F97583">=</span><span style="color:#B392F0"> printHello</span><span style="color:#E1E4E8">();</span></span></code></pre>
+<p>이런 경우 매개변수 부분을 비워두고, 호출할 때도 인수를 전달하지 않습니다.</p>
+<h2 id="반환-타입이-없는-메서드">반환 타입이 없는 메서드</h2>
+<p>반환값이 필요 없는 메서드는 <code>void</code>를 사용합니다:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> static</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> printHello</span><span style="color:#E1E4E8">(String name) {</span></span>
+<span class="line"><span style="color:#E1E4E8">    System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Hello "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> name);</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B392F0">printHello</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"John"</span><span style="color:#E1E4E8">);</span></span></code></pre>
+<p><code>void</code> 메서드는 값을 반환하지 않으므로 호출할 때 반환값을 받을 변수를 선언하지 않습니다. 모든 메서드는 원칙적으로 <code>return</code>을 호출해야 하지만, <code>void</code> 타입인 경우 <code>return</code>을 생략할 수 있습니다.</p>
+<h2 id="반환-타입의-특징">반환 타입의 특징</h2>
+<p>반환 타입이 있는 메서드는 반드시 값을 반환해야 합니다. 그리고 <code>return</code>문을 만나면 메서드가 즉시 종료됩니다. 이는 메서드의 흐름 제어에 유용하게 사용할 수 있습니다.</p>
+<h2 id="메서드-값-전달의-특징">메서드 값 전달의 특징</h2>
+<p>자바에서는 메서드에 값을 전달할 때 <strong>값을 복사해서 전달</strong>합니다. 이는 매우 중요한 개념입니다:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">int</span><span style="color:#E1E4E8"> num </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 10</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(num);  </span><span style="color:#6A737D">// 10 출력</span></span>
+<span class="line"><span style="color:#B392F0">changeValue</span><span style="color:#E1E4E8">(num);</span></span>
+<span class="line"><span style="color:#E1E4E8">System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(num);  </span><span style="color:#6A737D">// 여전히 10 출력</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> static</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> changeValue</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> num) {</span></span>
+<span class="line"><span style="color:#E1E4E8">    System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(num);  </span><span style="color:#6A737D">// 10 출력</span></span>
+<span class="line"><span style="color:#E1E4E8">    num </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 20</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">    System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(num);  </span><span style="color:#6A737D">// 20 출력</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>위 예제에서 <code>changeValue</code> 메서드 내부에서 <code>num</code>을 20으로 변경했지만, 원본 변수 <code>num</code>의 값은 여전히 10입니다. 이는 메서드에 전달된 값이 복사본이기 때문입니다.</p>
+<p>만약 메서드를 통해 값을 변경하고 싶다면, 반환값을 받아서 변경해야 합니다:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">int</span><span style="color:#E1E4E8"> num </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 10</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(num);  </span><span style="color:#6A737D">// 10 출력</span></span>
+<span class="line"><span style="color:#E1E4E8">num </span><span style="color:#F97583">=</span><span style="color:#B392F0"> changeValue</span><span style="color:#E1E4E8">(num);   </span><span style="color:#6A737D">// 반환값을 받아서 변경</span></span>
+<span class="line"><span style="color:#E1E4E8">System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(num);  </span><span style="color:#6A737D">// 20 출력</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> static</span><span style="color:#F97583"> int</span><span style="color:#B392F0"> changeValue</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> num) {</span></span>
+<span class="line"><span style="color:#E1E4E8">    System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(num);  </span><span style="color:#6A737D">// 10 출력</span></span>
+<span class="line"><span style="color:#E1E4E8">    num </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 20</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">    System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(num);  </span><span style="color:#6A737D">// 20 출력</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> num;  </span><span style="color:#6A737D">// 변경된 값을 반환</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>또한 메서드를 호출할 때 인자와 매개변수의 타입이 맞지 않으면 컴파일 에러가 발생합니다. 타입이 다르다면 형변환을 해야 합니다.</p>
+<h2 id="메서드-오버로딩">메서드 오버로딩</h2>
+<p><strong>메서드 오버로딩</strong>은 같은 이름의 메서드를 매개변수만 다르게 하여 여러 개 정의하는 것입니다:</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> static</span><span style="color:#F97583"> int</span><span style="color:#B392F0"> add</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> a, </span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> b) {</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> a </span><span style="color:#F97583">+</span><span style="color:#E1E4E8"> b;</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> static</span><span style="color:#F97583"> int</span><span style="color:#B392F0"> add</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> a, </span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> b, </span><span style="color:#F97583">int</span><span style="color:#E1E4E8"> c) {</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> a </span><span style="color:#F97583">+</span><span style="color:#E1E4E8"> b </span><span style="color:#F97583">+</span><span style="color:#E1E4E8"> c;</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<p>메서드 오버로딩이 가능한 조건:</p>
+<ul>
+<li>매개변수의 타입이 다르거나</li>
+<li>매개변수의 개수가 다르거나</li>
+<li>매개변수의 순서가 다르면 가능</li>
+</ul>
+<p><strong>주의사항</strong>: 반환 타입만 다르면 메서드 오버로딩이 아닙니다. 반환 타입은 메서드를 구분하는 기준이 되지 않기 때문입니다.</p>
+<h2 id="메서드-시그니처">메서드 시그니처</h2>
+<p><strong>메서드 시그니처</strong>는 메서드를 구분할 수 있는 기준이 됩니다:</p>
+<ul>
+<li><strong>메서드 시그니처 = 메서드 이름 + 매개변수</strong></li>
+<li>메서드 시그니처가 다르면 다른 메서드로 간주됩니다</li>
+<li><strong>반환 타입은 메서드 시그니처에 포함되지 않습니다</strong></li>
+</ul>
+<p>이것이 바로 반환 타입만 다르면 메서드 오버로딩이 안 되는 이유입니다. 반환 타입만 다르면 같은 메서드로 간주하기 때문에 컴파일러가 메서드 호출 시점에 어떤 메서드를 호출할지 결정할 수 없기 때문입니다.</p>
+<h2 id="swift와의-차이점">Swift와의 차이점</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>특징</th><th>Java</th><th>Swift</th></tr></thead><tbody><tr><td><strong>함수 선언</strong></td><td><code>public static int add(int a, int b)</code></td><td><code>func add(_ a: Int, _ b: Int) -> Int</code></td></tr><tr><td><strong>호출 방식</strong></td><td><code>add(1, 2)</code></td><td><code>add(1, 2)</code> 또는 <code>add(a: 1, b: 2)</code></td></tr><tr><td><strong>매개변수 라벨</strong></td><td>없음</td><td>외부/내부 라벨 지원</td></tr><tr><td><strong>기본값</strong></td><td>지원 안함</td><td><code>func greet(name: String = "World")</code></td></tr><tr><td><strong>반환값</strong></td><td>단일 값만</td><td>튜플로 여러 값 반환 가능</td></tr><tr><td><strong>오버로딩</strong></td><td>매개변수만 다르면 가능</td><td>매개변수만 다르면 가능</td></tr><tr><td><strong>void</strong></td><td><code>void</code> 사용</td><td><code>Void</code> 또는 반환 타입 생략</td></tr></tbody></table>
+<h3 id="swift-함수-예시">Swift 함수 예시</h3>
+<p><strong>매개변수 라벨:</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="swift"><code><span class="line"><span style="color:#F97583">func</span><span style="color:#B392F0"> greet</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">to</span><span style="color:#E1E4E8"> name: </span><span style="color:#79B8FF">String</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#79B8FF">    print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Hello, </span><span style="color:#9ECBFF">\(name)</span><span style="color:#9ECBFF">!"</span><span style="color:#E1E4E8">)  </span><span style="color:#6A737D">// 내부에서는 'name' 사용</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF">greet</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">to</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"Swift"</span><span style="color:#E1E4E8">)  </span><span style="color:#6A737D">// 외부에서는 'to' 라벨 사용</span></span></code></pre>
+<p><strong>튜플로 여러 값 반환:</strong></p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="swift"><code><span class="line"><span style="color:#F97583">func</span><span style="color:#B392F0"> getMinMax</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">numbers</span><span style="color:#E1E4E8">: [</span><span style="color:#79B8FF">Int</span><span style="color:#E1E4E8">]) </span><span style="color:#F97583">-></span><span style="color:#E1E4E8"> (min: </span><span style="color:#79B8FF">Int</span><span style="color:#E1E4E8">, max: </span><span style="color:#79B8FF">Int</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">    let</span><span style="color:#E1E4E8"> min </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> numbers.</span><span style="color:#79B8FF">min</span><span style="color:#E1E4E8">() </span><span style="color:#F97583">??</span><span style="color:#79B8FF"> 0</span></span>
+<span class="line"><span style="color:#F97583">    let</span><span style="color:#E1E4E8"> max </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> numbers.</span><span style="color:#79B8FF">max</span><span style="color:#E1E4E8">() </span><span style="color:#F97583">??</span><span style="color:#79B8FF"> 0</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> (</span><span style="color:#79B8FF">min</span><span style="color:#E1E4E8">: min, </span><span style="color:#79B8FF">max</span><span style="color:#E1E4E8">: max)</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">let</span><span style="color:#E1E4E8"> result </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> getMinMax</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">numbers</span><span style="color:#E1E4E8">: [</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">5</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">3</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">9</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">])</span></span>
+<span class="line"><span style="color:#79B8FF">print</span><span style="color:#E1E4E8">(result.</span><span style="color:#79B8FF">min</span><span style="color:#E1E4E8">)  </span><span style="color:#6A737D">// 1</span></span>
+<span class="line"><span style="color:#79B8FF">print</span><span style="color:#E1E4E8">(result.</span><span style="color:#79B8FF">max</span><span style="color:#E1E4E8">)  </span><span style="color:#6A737D">// 9</span></span></code></pre>
+<h3 id="주요-차이점">주요 차이점</h3>
+<ol>
+<li><strong>Java의 메서드</strong>는 클래스 내부에서만 정의 가능</li>
+<li><strong>Swift의 함수</strong>는 독립적으로도 정의 가능</li>
+<li><strong>Java는 매개변수 라벨 없음</strong>, <strong>Swift는 라벨 지원</strong></li>
+<li><strong>Java는 기본값 지원 안함</strong>, <strong>Swift는 기본값 설정 가능</strong></li>
+<li><strong>Java는 단일 반환값</strong>, <strong>Swift는 튜플로 여러 값 반환</strong></li>
+</ol>
+<hr>
+<h2 id="느낀점">느낀점</h2>
+<p>메서드를 학습하면서 Java와 Swift의 설계 철학 차이를 느낄 수 있었다.</p>
+<h3 id="java의-단순함과-명시성">Java의 단순함과 명시성</h3>
+<p>Swift에서는 함수 호출 시 외부 라벨과 내부 라벨이 분리되어 있어 더 명확하게 호출할 수 있다는 장점이 있지만, 간단한 함수에서는 번거로워서 <code>_</code>를 자주 사용하게 된다. 반면 Java는 단순하게 <code>add(1, 2)</code> 형태로 호출할 수 있어서 더 직관적이라는 점이 인상적이었다.</p>
+<h3 id="메서드-시그니처의-엄격함">메서드 시그니처의 엄격함</h3>
+<p>Java에서 반환 타입이 달라도 같은 메서드로 판별하는 것도 흥미로웠다. 이는 메서드 시그니처에 반환 타입이 포함되지 않기 때문인데, 컴파일러가 메서드 호출 시점에 어떤 메서드를 호출할지 결정할 수 없기 때문이다. 이런 엄격한 규칙이 Java의 타입 안정성을 보장한다는 것을 알게 되었다.</p>
+<h3 id="기본값-지원의-차이">기본값 지원의 차이</h3>
+<p>Java에서 기본값을 지원하지 않는 이유는 단순성과 명시성, 타입 안정성을 위해서라는 점도 새로웠다. 하지만 최근 Java에서는 record를 사용하여 기본값도 제공한다는 것을 알게 되어, Java가 계속 끊임없이 발전하고 있다는 것을 느꼈다.</p>
+<h3 id="언어-설계-철학">언어 설계 철학</h3>
+<p>Swift는 표현력을 중시하는 반면, Java는 명시성을 중시하는 것 같다. 각각의 장단점이 있지만, Java의 단순하고 명확한 문법이 큰 프로젝트에서 코드의 일관성을 유지하는 데 도움이 될 것 같다.</p>  </div> </article> </main> <footer data-astro-cid-sz7xmlte>
+&copy; 2025 Your name here. All rights reserved.
+<div class="social-links" data-astro-cid-sz7xmlte> <a href="https://m.webtoo.ls/@astro" target="_blank" data-astro-cid-sz7xmlte> <span class="sr-only" data-astro-cid-sz7xmlte>Follow Astro on Mastodon</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" astro-icon="social/mastodon" data-astro-cid-sz7xmlte><path fill="currentColor" d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" data-astro-cid-sz7xmlte></path></svg> </a> <a href="https://twitter.com/astrodotbuild" target="_blank" data-astro-cid-sz7xmlte> <span class="sr-only" data-astro-cid-sz7xmlte>Follow Astro on Twitter</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" astro-icon="social/twitter" data-astro-cid-sz7xmlte><path fill="currentColor" d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" data-astro-cid-sz7xmlte></path></svg> </a> <a href="https://github.com/withastro/astro" target="_blank" data-astro-cid-sz7xmlte> <span class="sr-only" data-astro-cid-sz7xmlte>Go to Astro's GitHub repo</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" astro-icon="social/github" data-astro-cid-sz7xmlte><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" data-astro-cid-sz7xmlte></path></svg> </a> </div> </footer>  </body></html>

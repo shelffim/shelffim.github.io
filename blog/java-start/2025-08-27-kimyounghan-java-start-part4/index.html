@@ -1,0 +1,243 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-bvzihdzo> <head><!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="sitemap" href="/sitemap-index.xml"><link rel="alternate" type="application/rss+xml" title="Astro Blog" href="https://shelffim.github.io/rss.xml"><meta name="generator" content="Astro v5.9.4"><!-- Font preloads --><link rel="preload" href="/fonts/atkinson-regular.woff" as="font" type="font/woff" crossorigin><link rel="preload" href="/fonts/atkinson-bold.woff" as="font" type="font/woff" crossorigin><!-- Canonical URL --><link rel="canonical" href="https://shelffim.github.io/blog/java-start/2025-08-27-kimyounghan-java-start-part4/"><!-- Primary Meta Tags --><title>김영한의 자바 기초 강의 - part 4</title><meta name="title" content="김영한의 자바 기초 강의 - part 4"><meta name="description" content="김영한님의 자바 기초 강의 part 4(연산자) 학습 정리"><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://shelffim.github.io/blog/java-start/2025-08-27-kimyounghan-java-start-part4/"><meta property="og:title" content="김영한의 자바 기초 강의 - part 4"><meta property="og:description" content="김영한님의 자바 기초 강의 part 4(연산자) 학습 정리"><meta property="og:image" content="https://shelffim.github.io/_astro/blog-placeholder-1.Bx0Zcyzv.jpg"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://shelffim.github.io/blog/java-start/2025-08-27-kimyounghan-java-start-part4/"><meta property="twitter:title" content="김영한의 자바 기초 강의 - part 4"><meta property="twitter:description" content="김영한님의 자바 기초 강의 part 4(연산자) 학습 정리"><meta property="twitter:image" content="https://shelffim.github.io/_astro/blog-placeholder-1.Bx0Zcyzv.jpg"><style>:root{--accent: #2337ff;--accent-dark: #000d8a;--black: 15, 18, 25;--gray: 96, 115, 159;--gray-light: 229, 233, 240;--gray-dark: 34, 41, 57;--gray-gradient: rgba(var(--gray-light), 50%), #fff;--box-shadow: 0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%), 0 16px 32px rgba(var(--gray), 33%)}@font-face{font-family:Atkinson;src:url(/fonts/atkinson-regular.woff) format("woff");font-weight:400;font-style:normal;font-display:swap}@font-face{font-family:Atkinson;src:url(/fonts/atkinson-bold.woff) format("woff");font-weight:700;font-style:normal;font-display:swap}body{font-family:Atkinson,sans-serif;margin:0;padding:0;text-align:left;background:linear-gradient(var(--gray-gradient)) no-repeat;background-size:100% 600px;word-wrap:break-word;overflow-wrap:break-word;color:rgb(var(--gray-dark));font-size:20px;line-height:1.7}main{width:720px;max-width:calc(100% - 2em);margin:auto;padding:3em 1em}h1,h2,h3,h4,h5,h6{margin:0 0 .5rem;color:rgb(var(--black));line-height:1.2}h1{font-size:3.052em}h2{font-size:2.441em}h3{font-size:1.953em}h4{font-size:1.563em}h5{font-size:1.25em}strong,b{font-weight:700}a,a:hover{color:var(--accent)}p{margin-bottom:1em}.prose p{margin-bottom:2em}textarea{width:100%;font-size:16px}input{font-size:16px}table{width:100%}img{max-width:100%;height:auto;border-radius:8px}code{padding:2px 5px;background-color:rgb(var(--gray-light));border-radius:2px}pre{padding:1.5em;border-radius:8px}pre>code{all:unset}blockquote{border-left:4px solid var(--accent);padding:0 0 0 20px;margin:0;font-size:1.333em}hr{border:none;border-top:1px solid rgb(var(--gray-light))}@media (max-width: 720px){body{font-size:18px}main{padding:1em}}.sr-only{border:0;padding:0;margin:0;position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px 1px 1px 1px);clip:rect(1px,1px,1px,1px);clip-path:inset(50%);white-space:nowrap}a[data-astro-cid-eimmu3lg]{display:inline-block;text-decoration:none}a[data-astro-cid-eimmu3lg].active{font-weight:bolder;text-decoration:underline}header[data-astro-cid-3ef6ksr2]{margin:0;padding:0 1em;background:#fff;box-shadow:0 2px 8px rgba(var(--black),5%)}h2[data-astro-cid-3ef6ksr2]{margin:0;font-size:1em}h2[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2],h2[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2].active{text-decoration:none}nav[data-astro-cid-3ef6ksr2]{display:flex;align-items:center;justify-content:space-between}nav[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2]{padding:1em .5em;color:var(--black);border-bottom:4px solid transparent;text-decoration:none}nav[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2].active{text-decoration:none;border-bottom-color:var(--accent)}.social-links[data-astro-cid-3ef6ksr2],.social-links[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2]{display:flex}@media (max-width: 720px){.social-links[data-astro-cid-3ef6ksr2]{display:none}}footer[data-astro-cid-sz7xmlte]{padding:2em 1em 6em;background:linear-gradient(var(--gray-gradient)) no-repeat;color:rgb(var(--gray));text-align:center}.social-links[data-astro-cid-sz7xmlte]{display:flex;justify-content:center;gap:1em;margin-top:1em}.social-links[data-astro-cid-sz7xmlte] a[data-astro-cid-sz7xmlte]{text-decoration:none;color:rgb(var(--gray))}.social-links[data-astro-cid-sz7xmlte] a[data-astro-cid-sz7xmlte]:hover{color:rgb(var(--gray-dark))}
+main[data-astro-cid-bvzihdzo]{width:calc(100% - 2em);max-width:100%;margin:0}.hero-image[data-astro-cid-bvzihdzo]{width:100%}.hero-image[data-astro-cid-bvzihdzo] img[data-astro-cid-bvzihdzo]{display:block;margin:0 auto;border-radius:12px;box-shadow:var(--box-shadow)}.prose[data-astro-cid-bvzihdzo]{width:720px;max-width:calc(100% - 2em);margin:auto;padding:1em;color:rgb(var(--gray-dark))}.title[data-astro-cid-bvzihdzo]{margin-bottom:1em;padding:1em 0;text-align:center;line-height:1}.title[data-astro-cid-bvzihdzo] h1[data-astro-cid-bvzihdzo]{margin:0 0 .5em}.date[data-astro-cid-bvzihdzo]{margin-bottom:.5em;color:rgb(var(--gray))}.last-updated-on[data-astro-cid-bvzihdzo]{font-style:italic}
+</style></head> <body data-astro-cid-bvzihdzo> <header data-astro-cid-3ef6ksr2> <nav data-astro-cid-3ef6ksr2> <h2 data-astro-cid-3ef6ksr2><a href="/" data-astro-cid-3ef6ksr2>Astro Blog</a></h2> <div class="internal-links" data-astro-cid-3ef6ksr2> <a href="/" data-astro-cid-3ef6ksr2="true" data-astro-cid-eimmu3lg> Home </a>  <a href="/blog" class="active" data-astro-cid-3ef6ksr2="true" data-astro-cid-eimmu3lg> Blog </a>  <a href="/about" data-astro-cid-3ef6ksr2="true" data-astro-cid-eimmu3lg> About </a>  </div> <div class="social-links" data-astro-cid-3ef6ksr2> <a href="https://m.webtoo.ls/@astro" target="_blank" data-astro-cid-3ef6ksr2> <span class="sr-only" data-astro-cid-3ef6ksr2>Follow Astro on Mastodon</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" data-astro-cid-3ef6ksr2><path fill="currentColor" d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" data-astro-cid-3ef6ksr2></path></svg> </a> <a href="https://twitter.com/astrodotbuild" target="_blank" data-astro-cid-3ef6ksr2> <span class="sr-only" data-astro-cid-3ef6ksr2>Follow Astro on Twitter</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" data-astro-cid-3ef6ksr2><path fill="currentColor" d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" data-astro-cid-3ef6ksr2></path></svg> </a> <a href="https://github.com/withastro/astro" target="_blank" data-astro-cid-3ef6ksr2> <span class="sr-only" data-astro-cid-3ef6ksr2>Go to Astro's GitHub repo</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" data-astro-cid-3ef6ksr2><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" data-astro-cid-3ef6ksr2></path></svg> </a> </div> </nav> </header>  <main data-astro-cid-bvzihdzo> <article data-astro-cid-bvzihdzo> <div class="hero-image" data-astro-cid-bvzihdzo>  </div> <div class="prose" data-astro-cid-bvzihdzo> <div class="title" data-astro-cid-bvzihdzo> <div class="date" data-astro-cid-bvzihdzo> <time datetime="2025-08-27T00:00:00.000Z"> Aug 27, 2025 </time>  </div> <h1 data-astro-cid-bvzihdzo>김영한의 자바 기초 강의 - part 4</h1> <hr data-astro-cid-bvzihdzo> </div>  <blockquote>
+<p><strong>출처</strong>: <a href="https://inf.run/PVx3u">김영한의 자바 기초 강의</a> - Section 4: 연산자</p>
+</blockquote>
+<h2 id="연산자-operators">연산자 (Operators)</h2>
+<p>연산자는 <strong>계산을 수행하는 기호</strong>입니다. 자바에서는 다양한 종류의 연산자를 제공합니다.</p>
+<h3 id="연산자-종류">연산자 종류</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>연산자 종류</th><th>기호 예시</th><th>설명</th></tr></thead><tbody><tr><td>산술 연산자</td><td><code>+, -, *, /, %</code></td><td>숫자 계산</td></tr><tr><td>대입 연산자</td><td><code>=</code></td><td>값 저장</td></tr><tr><td>비교 연산자</td><td><code>==, !=, >, &#x3C;, >=, &#x3C;=</code></td><td>값 비교</td></tr><tr><td>논리 연산자</td><td><code>&#x26;&#x26;, ||, !</code></td><td>논리 연산</td></tr><tr><td>증감 연산자</td><td><code>++, --</code></td><td>값 증가/감소</td></tr><tr><td>삼항 연산자</td><td><code>? :</code></td><td>조건부 연산</td></tr></tbody></table>
+<hr>
+<h2 id="1-산술-연산자-arithmetic-operators">1. 산술 연산자 (Arithmetic Operators)</h2>
+<p>산술 연산자는 <strong>숫자 데이터를 계산하는 데 사용</strong>됩니다.</p>
+<h3 id="기본-산술-연산자">기본 산술 연산자</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">int</span><span style="color:#E1E4E8"> a </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 10</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">int</span><span style="color:#E1E4E8"> b </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 3</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(a </span><span style="color:#F97583">+</span><span style="color:#E1E4E8"> b);  </span><span style="color:#6A737D">// 13 (덧셈)</span></span>
+<span class="line"><span style="color:#E1E4E8">System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(a </span><span style="color:#F97583">-</span><span style="color:#E1E4E8"> b);  </span><span style="color:#6A737D">// 7  (뺄셈)</span></span>
+<span class="line"><span style="color:#E1E4E8">System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(a </span><span style="color:#F97583">*</span><span style="color:#E1E4E8"> b);  </span><span style="color:#6A737D">// 30 (곱셈)</span></span>
+<span class="line"><span style="color:#E1E4E8">System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(a </span><span style="color:#F97583">/</span><span style="color:#E1E4E8"> b);  </span><span style="color:#6A737D">// 3  (나눗셈)</span></span>
+<span class="line"><span style="color:#E1E4E8">System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(a </span><span style="color:#F97583">%</span><span style="color:#E1E4E8"> b);  </span><span style="color:#6A737D">// 1  (나머지)</span></span></code></pre>
+<h3 id="핵심-포인트">핵심 포인트</h3>
+<ul>
+<li><strong>두 개의 피연산자</strong>를 필요로 함</li>
+<li><strong>같은 타입끼리 계산</strong>하면 결과도 같은 타입 (<code>int + int = int</code>)</li>
+<li><strong>정수 / 정수 = 정수</strong> (소수점 버림)
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">int</span><span style="color:#E1E4E8"> result </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 10</span><span style="color:#F97583"> /</span><span style="color:#79B8FF"> 3</span><span style="color:#E1E4E8">;  </span><span style="color:#6A737D">// 결과: 3 (3.333...이 아님)</span></span></code></pre>
+</li>
+</ul>
+<hr>
+<h2 id="2-문자열-더하기-string-concatenation">2. 문자열 더하기 (String Concatenation)</h2>
+<p>자바는 문자열에 <code>+</code> 연산자를 사용하면 <strong>문자열을 연결</strong>합니다.</p>
+<h3 id="문자열-연결-예시">문자열 연결 예시</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">String result1 </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "Hello"</span><span style="color:#F97583"> +</span><span style="color:#9ECBFF"> "World"</span><span style="color:#E1E4E8">;  </span><span style="color:#6A737D">// "HelloWorld"</span></span>
+<span class="line"><span style="color:#E1E4E8">String result2 </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "Hello"</span><span style="color:#F97583"> +</span><span style="color:#79B8FF"> 10</span><span style="color:#E1E4E8">;       </span><span style="color:#6A737D">// "Hello10"</span></span>
+<span class="line"><span style="color:#E1E4E8">String result3 </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 10</span><span style="color:#F97583"> +</span><span style="color:#9ECBFF"> "Hello"</span><span style="color:#E1E4E8">;       </span><span style="color:#6A737D">// "10Hello"</span></span></code></pre>
+<h3 id="핵심-포인트-1">핵심 포인트</h3>
+<ul>
+<li><strong>문자열 + 문자열</strong>: 두 문자열을 연결</li>
+<li><strong>문자열 + 숫자</strong>: 숫자를 문자열로 변환 후 연결</li>
+<li><strong>숫자 + 문자열</strong>: 숫자를 문자열로 변환 후 연결</li>
+</ul>
+<hr>
+<h2 id="3-연산자-우선순위-operator-precedence">3. 연산자 우선순위 (Operator Precedence)</h2>
+<p>연산자 우선순위는 <strong>상식선에서 사용</strong>됩니다.</p>
+<h3 id="우선순위-예시">우선순위 예시</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">int</span><span style="color:#E1E4E8"> result1 </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 2</span><span style="color:#F97583"> +</span><span style="color:#79B8FF"> 3</span><span style="color:#F97583"> *</span><span style="color:#79B8FF"> 4</span><span style="color:#E1E4E8">;    </span><span style="color:#6A737D">// 14 (곱셈이 먼저)</span></span>
+<span class="line"><span style="color:#F97583">int</span><span style="color:#E1E4E8"> result2 </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> (</span><span style="color:#79B8FF">2</span><span style="color:#F97583"> +</span><span style="color:#79B8FF"> 3</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">*</span><span style="color:#79B8FF"> 4</span><span style="color:#E1E4E8">;  </span><span style="color:#6A737D">// 20 (괄호가 먼저)</span></span></code></pre>
+<h3 id="핵심-포인트-2">핵심 포인트</h3>
+<ul>
+<li><strong>곱셈, 나눗셈</strong>이 <strong>덧셈, 뺄셈</strong>보다 우선</li>
+<li><strong>괄호</strong>를 사용하면 우선순위 변경 가능</li>
+<li><strong>애매하면 괄호 사용</strong> 권장</li>
+</ul>
+<hr>
+<h2 id="4-증감-연산자-incrementdecrement-operators">4. 증감 연산자 (Increment/Decrement Operators)</h2>
+<p>증감 연산자는 <strong>값을 1씩 증가 또는 감소</strong>시키는 연산자입니다.</p>
+<h3 id="전위후위-증감-연산자">전위/후위 증감 연산자</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">int</span><span style="color:#E1E4E8"> a </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 5</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// 전위 증감 (++a, --a)</span></span>
+<span class="line"><span style="color:#E1E4E8">System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">++</span><span style="color:#E1E4E8">a);  </span><span style="color:#6A737D">// 6 (증가 후 사용)</span></span>
+<span class="line"><span style="color:#E1E4E8">System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(a);    </span><span style="color:#6A737D">// 6</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">int</span><span style="color:#E1E4E8"> b </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 5</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">--</span><span style="color:#E1E4E8">b);  </span><span style="color:#6A737D">// 4 (감소 후 사용)</span></span>
+<span class="line"><span style="color:#E1E4E8">System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(b);    </span><span style="color:#6A737D">// 4</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// 후위 증감 (a++, a--)</span></span>
+<span class="line"><span style="color:#F97583">int</span><span style="color:#E1E4E8"> c </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 5</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(c</span><span style="color:#F97583">++</span><span style="color:#E1E4E8">);  </span><span style="color:#6A737D">// 5 (사용 후 증가)</span></span>
+<span class="line"><span style="color:#E1E4E8">System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(c);    </span><span style="color:#6A737D">// 6</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">int</span><span style="color:#E1E4E8"> d </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 5</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(d</span><span style="color:#F97583">--</span><span style="color:#E1E4E8">);  </span><span style="color:#6A737D">// 5 (사용 후 감소)</span></span>
+<span class="line"><span style="color:#E1E4E8">System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(d);    </span><span style="color:#6A737D">// 4</span></span></code></pre>
+<h3 id="핵심-포인트-3">핵심 포인트</h3>
+<ul>
+<li><strong><code>++a</code></strong>: a를 1 증가시킨 <strong>후</strong> 사용</li>
+<li><strong><code>a++</code></strong>: a를 사용한 <strong>후</strong> 1 증가</li>
+<li><strong><code>--a</code></strong>: a를 1 감소시킨 <strong>후</strong> 사용</li>
+<li><strong><code>a--</code></strong>: a를 사용한 <strong>후</strong> 1 감소</li>
+</ul>
+<hr>
+<h2 id="5-비교-연산자-comparison-operators">5. 비교 연산자 (Comparison Operators)</h2>
+<p>비교 연산자는 <strong>두 개의 피연산자를 비교</strong>하는 데 사용됩니다.</p>
+<h3 id="비교-연산자-예시">비교 연산자 예시</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">int</span><span style="color:#E1E4E8"> a </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 10</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">int</span><span style="color:#E1E4E8"> b </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 5</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(a </span><span style="color:#F97583">==</span><span style="color:#E1E4E8"> b);  </span><span style="color:#6A737D">// false (같음)</span></span>
+<span class="line"><span style="color:#E1E4E8">System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(a </span><span style="color:#F97583">!=</span><span style="color:#E1E4E8"> b);  </span><span style="color:#6A737D">// true  (다름)</span></span>
+<span class="line"><span style="color:#E1E4E8">System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(a </span><span style="color:#F97583">></span><span style="color:#E1E4E8"> b);   </span><span style="color:#6A737D">// true  (큼)</span></span>
+<span class="line"><span style="color:#E1E4E8">System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(a </span><span style="color:#F97583">&#x3C;</span><span style="color:#E1E4E8"> b);   </span><span style="color:#6A737D">// false (작음)</span></span>
+<span class="line"><span style="color:#E1E4E8">System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(a </span><span style="color:#F97583">>=</span><span style="color:#E1E4E8"> b);  </span><span style="color:#6A737D">// true  (크거나 같음)</span></span>
+<span class="line"><span style="color:#E1E4E8">System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(a </span><span style="color:#F97583">&#x3C;=</span><span style="color:#E1E4E8"> b);  </span><span style="color:#6A737D">// false (작거나 같음)</span></span></code></pre>
+<h3 id="문자열-비교">문자열 비교</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">String str1 </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "Hello"</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">String str2 </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "Hello"</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">String str3 </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> String</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"Hello"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(str1 </span><span style="color:#F97583">==</span><span style="color:#E1E4E8"> str2);        </span><span style="color:#6A737D">// true (리터럴 비교)</span></span>
+<span class="line"><span style="color:#E1E4E8">System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(str1 </span><span style="color:#F97583">==</span><span style="color:#E1E4E8"> str3);        </span><span style="color:#6A737D">// false (객체 비교)</span></span>
+<span class="line"><span style="color:#E1E4E8">System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(str1.</span><span style="color:#B392F0">equals</span><span style="color:#E1E4E8">(str3));   </span><span style="color:#6A737D">// true (내용 비교)</span></span></code></pre>
+<h3 id="핵심-포인트-4">핵심 포인트</h3>
+<ul>
+<li>비교 결과는 <strong><code>true</code> 또는 <code>false</code></strong> 반환</li>
+<li><strong>문자열 비교</strong>는 <code>==</code>이 아니라 <strong><code>.equals()</code></strong> 사용</li>
+<li><code>==</code>는 객체 참조 비교, <code>.equals()</code>는 내용 비교</li>
+</ul>
+<hr>
+<h2 id="6-논리-연산자-logical-operators">6. 논리 연산자 (Logical Operators)</h2>
+<p>논리 연산자는 <strong><code>true</code>, <code>false</code>를 비교</strong>하는 데 사용됩니다.</p>
+<h3 id="논리-연산자-예시">논리 연산자 예시</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">boolean</span><span style="color:#E1E4E8"> a </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> true</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">boolean</span><span style="color:#E1E4E8"> b </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> false</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(a </span><span style="color:#F97583">&#x26;&#x26;</span><span style="color:#E1E4E8"> b);  </span><span style="color:#6A737D">// false (AND: 둘 다 참이어야 참)</span></span>
+<span class="line"><span style="color:#E1E4E8">System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(a </span><span style="color:#F97583">||</span><span style="color:#E1E4E8"> b);  </span><span style="color:#6A737D">// true  (OR: 하나라도 참이면 참)</span></span>
+<span class="line"><span style="color:#E1E4E8">System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#F97583">!</span><span style="color:#E1E4E8">a);      </span><span style="color:#6A737D">// false (NOT: 참이면 거짓, 거짓이면 참)</span></span></code></pre>
+<h3 id="실제-사용-예시">실제 사용 예시</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">int</span><span style="color:#E1E4E8"> age </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 20</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#F97583">boolean</span><span style="color:#E1E4E8"> hasLicense </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> true</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// AND 연산자: 두 조건 모두 만족</span></span>
+<span class="line"><span style="color:#F97583">if</span><span style="color:#E1E4E8"> (age </span><span style="color:#F97583">>=</span><span style="color:#79B8FF"> 18</span><span style="color:#F97583"> &#x26;&#x26;</span><span style="color:#E1E4E8"> hasLicense) {</span></span>
+<span class="line"><span style="color:#E1E4E8">    System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"운전 가능"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// OR 연산자: 하나라도 만족</span></span>
+<span class="line"><span style="color:#F97583">if</span><span style="color:#E1E4E8"> (age </span><span style="color:#F97583">&#x3C;</span><span style="color:#79B8FF"> 18</span><span style="color:#F97583"> ||</span><span style="color:#F97583"> !</span><span style="color:#E1E4E8">hasLicense) {</span></span>
+<span class="line"><span style="color:#E1E4E8">    System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"운전 불가"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h3 id="핵심-포인트-5">핵심 포인트</h3>
+<ul>
+<li><strong><code>&#x26;&#x26;</code> (AND)</strong>: 두 조건이 <strong>모두 참</strong>일 때 참</li>
+<li><strong><code>||</code> (OR)</strong>: 두 조건 중 <strong>하나라도 참</strong>일 때 참</li>
+<li><strong><code>!</code> (NOT)</strong>: 참이면 거짓, 거짓이면 참</li>
+</ul>
+<hr>
+<h2 id="7-대입-연산자-assignment-operators">7. 대입 연산자 (Assignment Operators)</h2>
+<p>대입 연산자는 <strong>값을 변수에 저장</strong>하는 데 사용됩니다.</p>
+<h3 id="대입-연산자-예시">대입 연산자 예시</h3>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">int</span><span style="color:#E1E4E8"> a </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 10</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">a </span><span style="color:#F97583">+=</span><span style="color:#79B8FF"> 5</span><span style="color:#E1E4E8">;   </span><span style="color:#6A737D">// a = a + 5;  → 15</span></span>
+<span class="line"><span style="color:#E1E4E8">a </span><span style="color:#F97583">-=</span><span style="color:#79B8FF"> 3</span><span style="color:#E1E4E8">;   </span><span style="color:#6A737D">// a = a - 3;  → 12</span></span>
+<span class="line"><span style="color:#E1E4E8">a </span><span style="color:#F97583">*=</span><span style="color:#79B8FF"> 2</span><span style="color:#E1E4E8">;   </span><span style="color:#6A737D">// a = a * 2;  → 24</span></span>
+<span class="line"><span style="color:#E1E4E8">a </span><span style="color:#F97583">/=</span><span style="color:#79B8FF"> 4</span><span style="color:#E1E4E8">;   </span><span style="color:#6A737D">// a = a / 4;  → 6</span></span>
+<span class="line"><span style="color:#E1E4E8">a </span><span style="color:#F97583">%=</span><span style="color:#79B8FF"> 3</span><span style="color:#E1E4E8">;   </span><span style="color:#6A737D">// a = a % 3;  → 0</span></span></code></pre>
+<h3 id="대입-연산자-종류">대입 연산자 종류</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>연산자</th><th>의미</th><th>예시</th></tr></thead><tbody><tr><td><code>=</code></td><td>대입</td><td><code>a = 10</code></td></tr><tr><td><code>+=</code></td><td>더한 후 대입</td><td><code>a += 5</code> (a = a + 5)</td></tr><tr><td><code>-=</code></td><td>뺀 후 대입</td><td><code>a -= 3</code> (a = a - 3)</td></tr><tr><td><code>*=</code></td><td>곱한 후 대입</td><td><code>a *= 2</code> (a = a * 2)</td></tr><tr><td><code>/=</code></td><td>나눈 후 대입</td><td><code>a /= 4</code> (a = a / 4)</td></tr><tr><td><code>%=</code></td><td>나머지 구한 후 대입</td><td><code>a %= 3</code> (a = a % 3)</td></tr></tbody></table>
+<h3 id="핵심-포인트-6">핵심 포인트</h3>
+<ul>
+<li><strong><code>=</code></strong>: 왼쪽 변수에 오른쪽 값 저장</li>
+<li><strong>복합 대입 연산자</strong>: 연산과 대입을 동시에 수행</li>
+<li>코드를 <strong>간결하게</strong> 작성할 수 있음</li>
+</ul>
+<hr>
+<h2 id="느낀-점">느낀 점</h2>
+<p>Swift와 비교했을 때, 자바의 연산자들은 대부분 비슷하지만 몇 가지 차이점이 있다. 특히 문자열 비교에서 <code>==</code> 대신 <code>.equals()</code>를 사용해야 한다는 점이 인상적이다.</p>  </div> </article> </main> <footer data-astro-cid-sz7xmlte>
+&copy; 2025 Your name here. All rights reserved.
+<div class="social-links" data-astro-cid-sz7xmlte> <a href="https://m.webtoo.ls/@astro" target="_blank" data-astro-cid-sz7xmlte> <span class="sr-only" data-astro-cid-sz7xmlte>Follow Astro on Mastodon</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" astro-icon="social/mastodon" data-astro-cid-sz7xmlte><path fill="currentColor" d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" data-astro-cid-sz7xmlte></path></svg> </a> <a href="https://twitter.com/astrodotbuild" target="_blank" data-astro-cid-sz7xmlte> <span class="sr-only" data-astro-cid-sz7xmlte>Follow Astro on Twitter</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" astro-icon="social/twitter" data-astro-cid-sz7xmlte><path fill="currentColor" d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" data-astro-cid-sz7xmlte></path></svg> </a> <a href="https://github.com/withastro/astro" target="_blank" data-astro-cid-sz7xmlte> <span class="sr-only" data-astro-cid-sz7xmlte>Go to Astro's GitHub repo</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" astro-icon="social/github" data-astro-cid-sz7xmlte><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" data-astro-cid-sz7xmlte></path></svg> </a> </div> </footer>  </body></html>

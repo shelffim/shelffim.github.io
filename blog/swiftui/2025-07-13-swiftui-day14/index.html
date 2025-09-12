@@ -1,0 +1,341 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-bvzihdzo> <head><!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="sitemap" href="/sitemap-index.xml"><link rel="alternate" type="application/rss+xml" title="Astro Blog" href="https://shelffim.github.io/rss.xml"><meta name="generator" content="Astro v5.9.4"><!-- Font preloads --><link rel="preload" href="/fonts/atkinson-regular.woff" as="font" type="font/woff" crossorigin><link rel="preload" href="/fonts/atkinson-bold.woff" as="font" type="font/woff" crossorigin><!-- Canonical URL --><link rel="canonical" href="https://shelffim.github.io/blog/swiftui/2025-07-13-swiftui-day14/"><!-- Primary Meta Tags --><title>SwiftUI Day 14 학습 후기 - 옵셔널(Optionals)과 안전한 nil 처리</title><meta name="title" content="SwiftUI Day 14 학습 후기 - 옵셔널(Optionals)과 안전한 nil 처리"><meta name="description" content="SwiftUI Day 14에서 배운 옵셔널, 옵셔널 언래핑, nil 병합 연산자, 옵셔널 체이닝, 그리고 에러 처리에 대한 학습 회고입니다."><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://shelffim.github.io/blog/swiftui/2025-07-13-swiftui-day14/"><meta property="og:title" content="SwiftUI Day 14 학습 후기 - 옵셔널(Optionals)과 안전한 nil 처리"><meta property="og:description" content="SwiftUI Day 14에서 배운 옵셔널, 옵셔널 언래핑, nil 병합 연산자, 옵셔널 체이닝, 그리고 에러 처리에 대한 학습 회고입니다."><meta property="og:image" content="https://shelffim.github.io/_astro/blog-placeholder-1.Bx0Zcyzv.jpg"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://shelffim.github.io/blog/swiftui/2025-07-13-swiftui-day14/"><meta property="twitter:title" content="SwiftUI Day 14 학습 후기 - 옵셔널(Optionals)과 안전한 nil 처리"><meta property="twitter:description" content="SwiftUI Day 14에서 배운 옵셔널, 옵셔널 언래핑, nil 병합 연산자, 옵셔널 체이닝, 그리고 에러 처리에 대한 학습 회고입니다."><meta property="twitter:image" content="https://shelffim.github.io/_astro/blog-placeholder-1.Bx0Zcyzv.jpg"><style>:root{--accent: #2337ff;--accent-dark: #000d8a;--black: 15, 18, 25;--gray: 96, 115, 159;--gray-light: 229, 233, 240;--gray-dark: 34, 41, 57;--gray-gradient: rgba(var(--gray-light), 50%), #fff;--box-shadow: 0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%), 0 16px 32px rgba(var(--gray), 33%)}@font-face{font-family:Atkinson;src:url(/fonts/atkinson-regular.woff) format("woff");font-weight:400;font-style:normal;font-display:swap}@font-face{font-family:Atkinson;src:url(/fonts/atkinson-bold.woff) format("woff");font-weight:700;font-style:normal;font-display:swap}body{font-family:Atkinson,sans-serif;margin:0;padding:0;text-align:left;background:linear-gradient(var(--gray-gradient)) no-repeat;background-size:100% 600px;word-wrap:break-word;overflow-wrap:break-word;color:rgb(var(--gray-dark));font-size:20px;line-height:1.7}main{width:720px;max-width:calc(100% - 2em);margin:auto;padding:3em 1em}h1,h2,h3,h4,h5,h6{margin:0 0 .5rem;color:rgb(var(--black));line-height:1.2}h1{font-size:3.052em}h2{font-size:2.441em}h3{font-size:1.953em}h4{font-size:1.563em}h5{font-size:1.25em}strong,b{font-weight:700}a,a:hover{color:var(--accent)}p{margin-bottom:1em}.prose p{margin-bottom:2em}textarea{width:100%;font-size:16px}input{font-size:16px}table{width:100%}img{max-width:100%;height:auto;border-radius:8px}code{padding:2px 5px;background-color:rgb(var(--gray-light));border-radius:2px}pre{padding:1.5em;border-radius:8px}pre>code{all:unset}blockquote{border-left:4px solid var(--accent);padding:0 0 0 20px;margin:0;font-size:1.333em}hr{border:none;border-top:1px solid rgb(var(--gray-light))}@media (max-width: 720px){body{font-size:18px}main{padding:1em}}.sr-only{border:0;padding:0;margin:0;position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px 1px 1px 1px);clip:rect(1px,1px,1px,1px);clip-path:inset(50%);white-space:nowrap}a[data-astro-cid-eimmu3lg]{display:inline-block;text-decoration:none}a[data-astro-cid-eimmu3lg].active{font-weight:bolder;text-decoration:underline}header[data-astro-cid-3ef6ksr2]{margin:0;padding:0 1em;background:#fff;box-shadow:0 2px 8px rgba(var(--black),5%)}h2[data-astro-cid-3ef6ksr2]{margin:0;font-size:1em}h2[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2],h2[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2].active{text-decoration:none}nav[data-astro-cid-3ef6ksr2]{display:flex;align-items:center;justify-content:space-between}nav[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2]{padding:1em .5em;color:var(--black);border-bottom:4px solid transparent;text-decoration:none}nav[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2].active{text-decoration:none;border-bottom-color:var(--accent)}.social-links[data-astro-cid-3ef6ksr2],.social-links[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2]{display:flex}@media (max-width: 720px){.social-links[data-astro-cid-3ef6ksr2]{display:none}}footer[data-astro-cid-sz7xmlte]{padding:2em 1em 6em;background:linear-gradient(var(--gray-gradient)) no-repeat;color:rgb(var(--gray));text-align:center}.social-links[data-astro-cid-sz7xmlte]{display:flex;justify-content:center;gap:1em;margin-top:1em}.social-links[data-astro-cid-sz7xmlte] a[data-astro-cid-sz7xmlte]{text-decoration:none;color:rgb(var(--gray))}.social-links[data-astro-cid-sz7xmlte] a[data-astro-cid-sz7xmlte]:hover{color:rgb(var(--gray-dark))}
+main[data-astro-cid-bvzihdzo]{width:calc(100% - 2em);max-width:100%;margin:0}.hero-image[data-astro-cid-bvzihdzo]{width:100%}.hero-image[data-astro-cid-bvzihdzo] img[data-astro-cid-bvzihdzo]{display:block;margin:0 auto;border-radius:12px;box-shadow:var(--box-shadow)}.prose[data-astro-cid-bvzihdzo]{width:720px;max-width:calc(100% - 2em);margin:auto;padding:1em;color:rgb(var(--gray-dark))}.title[data-astro-cid-bvzihdzo]{margin-bottom:1em;padding:1em 0;text-align:center;line-height:1}.title[data-astro-cid-bvzihdzo] h1[data-astro-cid-bvzihdzo]{margin:0 0 .5em}.date[data-astro-cid-bvzihdzo]{margin-bottom:.5em;color:rgb(var(--gray))}.last-updated-on[data-astro-cid-bvzihdzo]{font-style:italic}
+</style></head> <body data-astro-cid-bvzihdzo> <header data-astro-cid-3ef6ksr2> <nav data-astro-cid-3ef6ksr2> <h2 data-astro-cid-3ef6ksr2><a href="/" data-astro-cid-3ef6ksr2>Astro Blog</a></h2> <div class="internal-links" data-astro-cid-3ef6ksr2> <a href="/" data-astro-cid-3ef6ksr2="true" data-astro-cid-eimmu3lg> Home </a>  <a href="/blog" class="active" data-astro-cid-3ef6ksr2="true" data-astro-cid-eimmu3lg> Blog </a>  <a href="/about" data-astro-cid-3ef6ksr2="true" data-astro-cid-eimmu3lg> About </a>  </div> <div class="social-links" data-astro-cid-3ef6ksr2> <a href="https://m.webtoo.ls/@astro" target="_blank" data-astro-cid-3ef6ksr2> <span class="sr-only" data-astro-cid-3ef6ksr2>Follow Astro on Mastodon</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" data-astro-cid-3ef6ksr2><path fill="currentColor" d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" data-astro-cid-3ef6ksr2></path></svg> </a> <a href="https://twitter.com/astrodotbuild" target="_blank" data-astro-cid-3ef6ksr2> <span class="sr-only" data-astro-cid-3ef6ksr2>Follow Astro on Twitter</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" data-astro-cid-3ef6ksr2><path fill="currentColor" d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" data-astro-cid-3ef6ksr2></path></svg> </a> <a href="https://github.com/withastro/astro" target="_blank" data-astro-cid-3ef6ksr2> <span class="sr-only" data-astro-cid-3ef6ksr2>Go to Astro's GitHub repo</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" data-astro-cid-3ef6ksr2><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" data-astro-cid-3ef6ksr2></path></svg> </a> </div> </nav> </header>  <main data-astro-cid-bvzihdzo> <article data-astro-cid-bvzihdzo> <div class="hero-image" data-astro-cid-bvzihdzo>  </div> <div class="prose" data-astro-cid-bvzihdzo> <div class="title" data-astro-cid-bvzihdzo> <div class="date" data-astro-cid-bvzihdzo> <time datetime="2025-07-13T00:00:00.000Z"> Jul 13, 2025 </time>  </div> <h1 data-astro-cid-bvzihdzo>SwiftUI Day 14 학습 후기 - 옵셔널(Optionals)과 안전한 nil 처리</h1> <hr data-astro-cid-bvzihdzo> </div>  <h1 id="swiftui-day-14-학습-후기---옵셔널optionals과-안전한-nil-처리">SwiftUI Day 14 학습 후기 - 옵셔널(Optionals)과 안전한 nil 처리</h1>
+<h3 id="1-학습-날짜-및-강의-링크">1. 학습 날짜 및 강의 링크</h3>
+<ul>
+<li>📅 2025년 7월 13일</li>
+<li>🔗 <a href="https://www.hackingwithswift.com/100/swiftui/14">Hacking with SwiftUI Day 14</a></li>
+<li>📺 <a href="https://www.youtube.com/watch?v=7a7As0uNWOQ">관련 YouTube 영상</a></li>
+</ul>
+<hr>
+<h3 id="2-오늘-배운-핵심-개념">2. 오늘 배운 핵심 개념</h3>
+<p>이번에는 **Swift의 옵셔널(Optionals)**에 대해 학습했다.</p>
+<hr>
+<h3 id="3-옵셔널-optional---값이-있을-수도-없을-수도-있는-상태를-표현하는-타입">3. 옵셔널 (Optional) - 값이 있을 수도, 없을 수도 있는 상태를 표현하는 타입</h3>
+<h4 id="-옵셔널이란">✅ 옵셔널이란?</h4>
+<p>옵셔널은 <strong>값이 존재할 수도 있고 없을 수도 있는 상태</strong>를 표현하는 타입이다. 데이터 타입 뒤에 <code>?</code>를 붙여 사용한다.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="swift"><code><span class="line"><span style="color:#6A737D">// 옵셔널 선언</span></span>
+<span class="line"><span style="color:#F97583">var</span><span style="color:#E1E4E8"> name: </span><span style="color:#79B8FF">String</span><span style="color:#F97583">?</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "김철수"</span></span>
+<span class="line"><span style="color:#F97583">var</span><span style="color:#E1E4E8"> age: </span><span style="color:#79B8FF">Int</span><span style="color:#F97583">?</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> nil</span></span>
+<span class="line"><span style="color:#F97583">var</span><span style="color:#E1E4E8"> height: </span><span style="color:#79B8FF">Double</span><span style="color:#F97583">?</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> 175.5</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// 옵셔널 타입 확인</span></span>
+<span class="line"><span style="color:#79B8FF">print</span><span style="color:#E1E4E8">(name) </span><span style="color:#6A737D">// Optional("김철수")</span></span>
+<span class="line"><span style="color:#79B8FF">print</span><span style="color:#E1E4E8">(age)  </span><span style="color:#6A737D">// nil</span></span>
+<span class="line"><span style="color:#79B8FF">print</span><span style="color:#E1E4E8">(height) </span><span style="color:#6A737D">// Optional(175.5)</span></span></code></pre>
+<h4 id="-swift에서-옵셔널을-사용하는-이유">✅ Swift에서 옵셔널을 사용하는 이유</h4>
+<p>iOS 앱을 작성할 때 함수 내에서 <strong>음수 대신 nil 값을 반환하는 것이 합리적</strong>이다.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="swift"><code><span class="line"><span style="color:#6A737D">// ❌ 문제가 있는 방식 - 음수가 두 가지 의미를 가짐</span></span>
+<span class="line"><span style="color:#F97583">func</span><span style="color:#B392F0"> findMaxValue</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">in</span><span style="color:#E1E4E8"> numbers: [</span><span style="color:#79B8FF">Int</span><span style="color:#E1E4E8">]) </span><span style="color:#F97583">-></span><span style="color:#79B8FF"> Int</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> numbers.</span><span style="color:#79B8FF">isEmpty</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#79B8FF"> -1</span><span style="color:#6A737D"> // 배열이 비어있다는 의미</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> numbers.</span><span style="color:#79B8FF">max</span><span style="color:#E1E4E8">() </span><span style="color:#F97583">??</span><span style="color:#79B8FF"> -1</span><span style="color:#6A737D"> // 실제 음수 값일 수도 있음</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// ✅ 옵셔널을 사용한 안전한 방식</span></span>
+<span class="line"><span style="color:#F97583">func</span><span style="color:#B392F0"> findMaxValue</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">in</span><span style="color:#E1E4E8"> numbers: [</span><span style="color:#79B8FF">Int</span><span style="color:#E1E4E8">]) </span><span style="color:#F97583">-></span><span style="color:#79B8FF"> Int</span><span style="color:#F97583">?</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> numbers.</span><span style="color:#79B8FF">isEmpty</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#79B8FF"> nil</span><span style="color:#6A737D"> // 명확하게 "값이 없다"는 의미</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> numbers.</span><span style="color:#79B8FF">max</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// 사용 예시</span></span>
+<span class="line"><span style="color:#F97583">let</span><span style="color:#E1E4E8"> numbers1 </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> [</span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">5</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">3</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">9</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">]</span></span>
+<span class="line"><span style="color:#F97583">let</span><span style="color:#E1E4E8"> numbers2: [</span><span style="color:#79B8FF">Int</span><span style="color:#E1E4E8">] </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> []</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">let</span><span style="color:#E1E4E8"> max1 </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> findMaxValue</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">in</span><span style="color:#E1E4E8">: numbers1) </span><span style="color:#6A737D">// Optional(9)</span></span>
+<span class="line"><span style="color:#F97583">let</span><span style="color:#E1E4E8"> max2 </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> findMaxValue</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">in</span><span style="color:#E1E4E8">: numbers2) </span><span style="color:#6A737D">// nil</span></span></code></pre>
+<blockquote>
+<p>📌 <strong>핵심 개념</strong>: 음수는 “배열이 비어있다”는 의미와 “실제 음수 값” 두 가지 의미를 가지므로, nil을 사용하여 명확하게 구분한다.</p>
+</blockquote>
+<hr>
+<h3 id="4-옵셔널-언래핑-optional-unwrapping">4. 옵셔널 언래핑 (Optional Unwrapping)</h3>
+<h4 id="-if-let을-사용한-안전한-언래핑">✅ if let을 사용한 안전한 언래핑</h4>
+<p>옵셔널의 값을 안전하게 추출하는 가장 기본적인 방법이다.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="swift"><code><span class="line"><span style="color:#F97583">var</span><span style="color:#E1E4E8"> name: </span><span style="color:#79B8FF">String</span><span style="color:#F97583">?</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "김철수"</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// if let을 사용한 안전한 언래핑</span></span>
+<span class="line"><span style="color:#F97583">if</span><span style="color:#F97583"> let</span><span style="color:#E1E4E8"> unwrappedName </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> name {</span></span>
+<span class="line"><span style="color:#79B8FF">    print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"이름은 </span><span style="color:#9ECBFF">\(unwrappedName)</span><span style="color:#9ECBFF">입니다."</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">} </span><span style="color:#F97583">else</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#79B8FF">    print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"이름이 없습니다."</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// 여러 옵셔널을 동시에 언래핑</span></span>
+<span class="line"><span style="color:#F97583">var</span><span style="color:#E1E4E8"> firstName: </span><span style="color:#79B8FF">String</span><span style="color:#F97583">?</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "김"</span></span>
+<span class="line"><span style="color:#F97583">var</span><span style="color:#E1E4E8"> lastName: </span><span style="color:#79B8FF">String</span><span style="color:#F97583">?</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "철수"</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">if</span><span style="color:#F97583"> let</span><span style="color:#E1E4E8"> first </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> firstName, </span><span style="color:#F97583">let</span><span style="color:#E1E4E8"> last </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> lastName {</span></span>
+<span class="line"><span style="color:#79B8FF">    print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"전체 이름: </span><span style="color:#9ECBFF">\(first)\(last)</span><span style="color:#9ECBFF">"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">} </span><span style="color:#F97583">else</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#79B8FF">    print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"이름 정보가 불완전합니다."</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h4 id="-guard-let을-사용한-언래핑">✅ guard let을 사용한 언래핑</h4>
+<p><code>guard let</code>은 <code>if let</code>과 비슷하지만 <strong>스코프 범위</strong>가 다르다.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="swift"><code><span class="line"><span style="color:#F97583">func</span><span style="color:#B392F0"> processUser</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">name</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">String</span><span style="color:#F97583">?</span><span style="color:#E1E4E8">, </span><span style="color:#B392F0">age</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">Int</span><span style="color:#F97583">?</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#6A737D">    // guard let - 함수 전체에서 사용 가능</span></span>
+<span class="line"><span style="color:#F97583">    guard</span><span style="color:#F97583"> let</span><span style="color:#E1E4E8"> userName </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> name </span><span style="color:#F97583">else</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#79B8FF">        print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"이름이 필요합니다."</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#6A737D"> // 함수 종료</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    guard</span><span style="color:#F97583"> let</span><span style="color:#E1E4E8"> userAge </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> age </span><span style="color:#F97583">else</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#79B8FF">        print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"나이가 필요합니다."</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">        return</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">    // guard let으로 언래핑된 변수는 함수 전체에서 사용 가능</span></span>
+<span class="line"><span style="color:#79B8FF">    print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"사용자: </span><span style="color:#9ECBFF">\(userName)</span><span style="color:#9ECBFF">, 나이: </span><span style="color:#9ECBFF">\(userAge)</span><span style="color:#9ECBFF">"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// if let과 guard let의 차이점</span></span>
+<span class="line"><span style="color:#F97583">func</span><span style="color:#B392F0"> compareUnwrapping</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">name</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">String</span><span style="color:#F97583">?</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#6A737D">    // if let - 블록 내에서만 사용 가능</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#F97583"> let</span><span style="color:#E1E4E8"> userName </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> name {</span></span>
+<span class="line"><span style="color:#79B8FF">        print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"if let 블록 내: </span><span style="color:#9ECBFF">\(userName)</span><span style="color:#9ECBFF">"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#6A737D">    // print(userName) // ❌ 컴파일 에러 - 스코프 밖</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">    // guard let - 함수 전체에서 사용 가능</span></span>
+<span class="line"><span style="color:#F97583">    guard</span><span style="color:#F97583"> let</span><span style="color:#E1E4E8"> userName </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> name </span><span style="color:#F97583">else</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#79B8FF">        print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"이름이 없습니다."</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">        return</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#79B8FF">    print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"guard let 이후: </span><span style="color:#9ECBFF">\(userName)</span><span style="color:#9ECBFF">"</span><span style="color:#E1E4E8">) </span><span style="color:#6A737D">// ✅ 사용 가능</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h4 id="-if-let-vs-guard-let-사용-시기">✅ if let vs guard let 사용 시기</h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>상황</th><th>권장 방법</th><th>이유</th></tr></thead><tbody><tr><td><strong>여러 분기 처리</strong></td><td><code>if let</code></td><td>성공/실패에 따른 다양한 처리</td></tr><tr><td><strong>조기 종료</strong></td><td><code>guard let</code></td><td>실패 시 즉시 함수 종료</td></tr><tr><td><strong>함수 전체에서 사용</strong></td><td><code>guard let</code></td><td>언래핑된 값이 함수 전체에서 필요</td></tr></tbody></table>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="swift"><code><span class="line"><span style="color:#6A737D">// ✅ if let 사용 예시 - 다양한 분기 처리</span></span>
+<span class="line"><span style="color:#F97583">func</span><span style="color:#B392F0"> processUserData</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">name</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">String</span><span style="color:#F97583">?</span><span style="color:#E1E4E8">, </span><span style="color:#B392F0">age</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">Int</span><span style="color:#F97583">?</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#F97583">    if</span><span style="color:#F97583"> let</span><span style="color:#E1E4E8"> userName </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> name {</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#F97583"> let</span><span style="color:#E1E4E8"> userAge </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> age {</span></span>
+<span class="line"><span style="color:#79B8FF">            print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"완전한 정보: </span><span style="color:#9ECBFF">\(userName)</span><span style="color:#9ECBFF">, </span><span style="color:#9ECBFF">\(userAge)</span><span style="color:#9ECBFF">"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">        } </span><span style="color:#F97583">else</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#79B8FF">            print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"이름만 있음: </span><span style="color:#9ECBFF">\(userName)</span><span style="color:#9ECBFF">"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    } </span><span style="color:#F97583">else</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">        if</span><span style="color:#F97583"> let</span><span style="color:#E1E4E8"> userAge </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> age {</span></span>
+<span class="line"><span style="color:#79B8FF">            print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"나이만 있음: </span><span style="color:#9ECBFF">\(userAge)</span><span style="color:#9ECBFF">"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">        } </span><span style="color:#F97583">else</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#79B8FF">            print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"정보 없음"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">        }</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// ✅ guard let 사용 예시 - 조기 종료</span></span>
+<span class="line"><span style="color:#F97583">func</span><span style="color:#B392F0"> validateUser</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">name</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">String</span><span style="color:#F97583">?</span><span style="color:#E1E4E8">, </span><span style="color:#B392F0">age</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">Int</span><span style="color:#F97583">?</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">-></span><span style="color:#79B8FF"> Bool</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    guard</span><span style="color:#F97583"> let</span><span style="color:#E1E4E8"> userName </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> name, </span><span style="color:#F97583">!</span><span style="color:#E1E4E8">userName.</span><span style="color:#79B8FF">isEmpty</span><span style="color:#F97583"> else</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#79B8FF">        print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"유효한 이름이 필요합니다."</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#79B8FF"> false</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    guard</span><span style="color:#F97583"> let</span><span style="color:#E1E4E8"> userAge </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> age, userAge </span><span style="color:#F97583">>=</span><span style="color:#79B8FF"> 0</span><span style="color:#F97583"> else</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#79B8FF">        print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"유효한 나이가 필요합니다."</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#79B8FF"> false</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">    // 모든 검증을 통과한 후의 로직</span></span>
+<span class="line"><span style="color:#79B8FF">    print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"사용자 검증 완료: </span><span style="color:#9ECBFF">\(userName)</span><span style="color:#9ECBFF">, </span><span style="color:#9ECBFF">\(userAge)</span><span style="color:#9ECBFF">"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#79B8FF"> true</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<hr>
+<h3 id="5-nil-병합-연산자-nil-coalescing-operator">5. nil 병합 연산자 (Nil Coalescing Operator)</h3>
+<h4 id="--연산자를-사용한-기본값-제공">✅ <code>??</code> 연산자를 사용한 기본값 제공</h4>
+<p>옵셔널 변수가 nil일 경우, 기본값을 제공하여 안전하게 옵셔널 값을 처리한다.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="swift"><code><span class="line"><span style="color:#F97583">var</span><span style="color:#E1E4E8"> name: </span><span style="color:#79B8FF">String</span><span style="color:#F97583">?</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> nil</span></span>
+<span class="line"><span style="color:#F97583">var</span><span style="color:#E1E4E8"> age: </span><span style="color:#79B8FF">Int</span><span style="color:#F97583">?</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> 25</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// nil 병합 연산자 사용</span></span>
+<span class="line"><span style="color:#F97583">let</span><span style="color:#E1E4E8"> displayName </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> name </span><span style="color:#F97583">??</span><span style="color:#9ECBFF"> "알 수 없음"</span></span>
+<span class="line"><span style="color:#F97583">let</span><span style="color:#E1E4E8"> displayAge </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> age </span><span style="color:#F97583">??</span><span style="color:#79B8FF"> 0</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF">print</span><span style="color:#E1E4E8">(displayName) </span><span style="color:#6A737D">// "알 수 없음"</span></span>
+<span class="line"><span style="color:#79B8FF">print</span><span style="color:#E1E4E8">(displayAge)  </span><span style="color:#6A737D">// 25</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// 체이닝 가능</span></span>
+<span class="line"><span style="color:#F97583">var</span><span style="color:#E1E4E8"> firstName: </span><span style="color:#79B8FF">String</span><span style="color:#F97583">?</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> nil</span></span>
+<span class="line"><span style="color:#F97583">var</span><span style="color:#E1E4E8"> lastName: </span><span style="color:#79B8FF">String</span><span style="color:#F97583">?</span><span style="color:#F97583"> =</span><span style="color:#9ECBFF"> "김"</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">let</span><span style="color:#E1E4E8"> fullName </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> firstName </span><span style="color:#F97583">??</span><span style="color:#E1E4E8"> lastName </span><span style="color:#F97583">??</span><span style="color:#9ECBFF"> "이름 없음"</span></span>
+<span class="line"><span style="color:#79B8FF">print</span><span style="color:#E1E4E8">(fullName) </span><span style="color:#6A737D">// "김"</span></span></code></pre>
+<h4 id="-실제-활용-예시">✅ 실제 활용 예시</h4>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="swift"><code><span class="line"><span style="color:#F97583">struct</span><span style="color:#B392F0"> User</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    let</span><span style="color:#E1E4E8"> name: </span><span style="color:#79B8FF">String</span><span style="color:#F97583">?</span></span>
+<span class="line"><span style="color:#F97583">    let</span><span style="color:#E1E4E8"> email: </span><span style="color:#79B8FF">String</span><span style="color:#F97583">?</span></span>
+<span class="line"><span style="color:#F97583">    let</span><span style="color:#E1E4E8"> age: </span><span style="color:#79B8FF">Int</span><span style="color:#F97583">?</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">let</span><span style="color:#E1E4E8"> user </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> User</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">name</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">nil</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">email</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"user@example.com"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">age</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">30</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// 안전한 값 추출</span></span>
+<span class="line"><span style="color:#F97583">let</span><span style="color:#E1E4E8"> displayName </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> user.name </span><span style="color:#F97583">??</span><span style="color:#9ECBFF"> "알 수 없음"</span></span>
+<span class="line"><span style="color:#F97583">let</span><span style="color:#E1E4E8"> displayEmail </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> user.email </span><span style="color:#F97583">??</span><span style="color:#9ECBFF"> "이메일 없음"</span></span>
+<span class="line"><span style="color:#F97583">let</span><span style="color:#E1E4E8"> displayAge </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> user.age </span><span style="color:#F97583">??</span><span style="color:#79B8FF"> 0</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF">print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"사용자 정보: </span><span style="color:#9ECBFF">\(displayName)</span><span style="color:#9ECBFF">, </span><span style="color:#9ECBFF">\(displayEmail)</span><span style="color:#9ECBFF">, </span><span style="color:#9ECBFF">\(displayAge)</span><span style="color:#9ECBFF">세"</span><span style="color:#E1E4E8">)</span></span></code></pre>
+<hr>
+<h3 id="6-옵셔널-체이닝-optional-chaining">6. 옵셔널 체이닝 (Optional Chaining)</h3>
+<h4 id="-안전한-속성메서드-호출">✅ 안전한 속성/메서드 호출</h4>
+<p>옵셔널 값이 nil인지 아닌지에 따라, 그 뒤의 속성/메서드 등을 호출할지 말지를 <strong>자동으로 결정</strong>해준다.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="swift"><code><span class="line"><span style="color:#F97583">struct</span><span style="color:#B392F0"> Address</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    let</span><span style="color:#E1E4E8"> street: </span><span style="color:#79B8FF">String</span></span>
+<span class="line"><span style="color:#F97583">    let</span><span style="color:#E1E4E8"> city: </span><span style="color:#79B8FF">String</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">struct</span><span style="color:#B392F0"> Person</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    let</span><span style="color:#E1E4E8"> name: </span><span style="color:#79B8FF">String</span></span>
+<span class="line"><span style="color:#F97583">    let</span><span style="color:#E1E4E8"> address: Address</span><span style="color:#F97583">?</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">let</span><span style="color:#E1E4E8"> person1 </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> Person</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">name</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"김철수"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">address</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">Address</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">street</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"강남대로"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">city</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"서울"</span><span style="color:#E1E4E8">))</span></span>
+<span class="line"><span style="color:#F97583">let</span><span style="color:#E1E4E8"> person2 </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> Person</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">name</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"박영희"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">address</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">nil</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// 옵셔널 체이닝 사용</span></span>
+<span class="line"><span style="color:#79B8FF">print</span><span style="color:#E1E4E8">(person1.address</span><span style="color:#F97583">?</span><span style="color:#E1E4E8">.street) </span><span style="color:#6A737D">// Optional("강남대로")</span></span>
+<span class="line"><span style="color:#79B8FF">print</span><span style="color:#E1E4E8">(person2.address</span><span style="color:#F97583">?</span><span style="color:#E1E4E8">.street) </span><span style="color:#6A737D">// nil</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// 체이닝과 nil 병합 연산자 조합</span></span>
+<span class="line"><span style="color:#F97583">let</span><span style="color:#E1E4E8"> street1 </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> person1.address</span><span style="color:#F97583">?</span><span style="color:#E1E4E8">.street </span><span style="color:#F97583">??</span><span style="color:#9ECBFF"> "주소 없음"</span></span>
+<span class="line"><span style="color:#F97583">let</span><span style="color:#E1E4E8"> street2 </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> person2.address</span><span style="color:#F97583">?</span><span style="color:#E1E4E8">.street </span><span style="color:#F97583">??</span><span style="color:#9ECBFF"> "주소 없음"</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#79B8FF">print</span><span style="color:#E1E4E8">(street1) </span><span style="color:#6A737D">// "강남대로"</span></span>
+<span class="line"><span style="color:#79B8FF">print</span><span style="color:#E1E4E8">(street2) </span><span style="color:#6A737D">// "주소 없음"</span></span></code></pre>
+<h4 id="-메서드-호출에서의-옵셔널-체이닝">✅ 메서드 호출에서의 옵셔널 체이닝</h4>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="swift"><code><span class="line"><span style="color:#F97583">class</span><span style="color:#B392F0"> Calculator</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    func</span><span style="color:#B392F0"> add</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">_</span><span style="color:#E1E4E8"> a: </span><span style="color:#79B8FF">Int</span><span style="color:#E1E4E8">, </span><span style="color:#B392F0">_</span><span style="color:#E1E4E8"> b: </span><span style="color:#79B8FF">Int</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">-></span><span style="color:#79B8FF"> Int</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> a </span><span style="color:#F97583">+</span><span style="color:#E1E4E8"> b</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">    func</span><span style="color:#B392F0"> divide</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">_</span><span style="color:#E1E4E8"> a: </span><span style="color:#79B8FF">Int</span><span style="color:#E1E4E8">, </span><span style="color:#B392F0">_</span><span style="color:#E1E4E8"> b: </span><span style="color:#79B8FF">Int</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">-></span><span style="color:#79B8FF"> Int</span><span style="color:#F97583">?</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">        guard</span><span style="color:#E1E4E8"> b </span><span style="color:#F97583">!=</span><span style="color:#79B8FF"> 0</span><span style="color:#F97583"> else</span><span style="color:#E1E4E8"> { </span><span style="color:#F97583">return</span><span style="color:#79B8FF"> nil</span><span style="color:#E1E4E8"> }</span></span>
+<span class="line"><span style="color:#F97583">        return</span><span style="color:#E1E4E8"> a </span><span style="color:#F97583">/</span><span style="color:#E1E4E8"> b</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#F97583">var</span><span style="color:#E1E4E8"> calculator: Calculator</span><span style="color:#F97583">?</span><span style="color:#F97583"> =</span><span style="color:#79B8FF"> Calculator</span><span style="color:#E1E4E8">()</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// 안전한 메서드 호출</span></span>
+<span class="line"><span style="color:#F97583">let</span><span style="color:#E1E4E8"> result1 </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> calculator</span><span style="color:#F97583">?</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">add</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">5</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">3</span><span style="color:#E1E4E8">) </span><span style="color:#6A737D">// Optional(8)</span></span>
+<span class="line"><span style="color:#F97583">let</span><span style="color:#E1E4E8"> result2 </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> calculator</span><span style="color:#F97583">?</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">divide</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">) </span><span style="color:#6A737D">// Optional(5)</span></span>
+<span class="line"><span style="color:#F97583">let</span><span style="color:#E1E4E8"> result3 </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> calculator</span><span style="color:#F97583">?</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">divide</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">) </span><span style="color:#6A737D">// nil</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#E1E4E8">calculator </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> nil</span></span>
+<span class="line"><span style="color:#F97583">let</span><span style="color:#E1E4E8"> result4 </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> calculator</span><span style="color:#F97583">?</span><span style="color:#E1E4E8">.</span><span style="color:#79B8FF">add</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">5</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">3</span><span style="color:#E1E4E8">) </span><span style="color:#6A737D">// nil</span></span></code></pre>
+<hr>
+<h3 id="7-에러-처리와-옵셔널">7. 에러 처리와 옵셔널</h3>
+<h4 id="-try를-사용한-옵셔널-에러-처리">✅ try?를 사용한 옵셔널 에러 처리</h4>
+<p>오류를 발생할 수 있는 함수를 호출할 때 옵셔널로 처리하는 방법이다.</p>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="swift"><code><span class="line"><span style="color:#6A737D">// 에러를 던질 수 있는 함수</span></span>
+<span class="line"><span style="color:#F97583">func</span><span style="color:#B392F0"> divideNumbers</span><span style="color:#E1E4E8">(</span><span style="color:#B392F0">_</span><span style="color:#E1E4E8"> a: </span><span style="color:#79B8FF">Int</span><span style="color:#E1E4E8">, </span><span style="color:#B392F0">_</span><span style="color:#E1E4E8"> b: </span><span style="color:#79B8FF">Int</span><span style="color:#E1E4E8">) </span><span style="color:#F97583">throws</span><span style="color:#F97583"> -></span><span style="color:#79B8FF"> Int</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    guard</span><span style="color:#E1E4E8"> b </span><span style="color:#F97583">!=</span><span style="color:#79B8FF"> 0</span><span style="color:#F97583"> else</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">        throw</span><span style="color:#79B8FF"> NSError</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">domain</span><span style="color:#E1E4E8">: </span><span style="color:#9ECBFF">"DivisionError"</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">code</span><span style="color:#E1E4E8">: </span><span style="color:#79B8FF">1</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">userInfo</span><span style="color:#E1E4E8">: [NSLocalizedDescriptionKey</span><span style="color:#F97583">:</span><span style="color:#9ECBFF"> "0으로 나눌 수 없습니다."</span><span style="color:#E1E4E8">])</span></span>
+<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#F97583">    return</span><span style="color:#E1E4E8"> a </span><span style="color:#F97583">/</span><span style="color:#E1E4E8"> b</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// try? 사용 - 에러 발생 시 nil 반환</span></span>
+<span class="line"><span style="color:#F97583">let</span><span style="color:#E1E4E8"> result1 </span><span style="color:#F97583">=</span><span style="color:#F97583"> try?</span><span style="color:#79B8FF"> divideNumbers</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">) </span><span style="color:#6A737D">// Optional(5)</span></span>
+<span class="line"><span style="color:#F97583">let</span><span style="color:#E1E4E8"> result2 </span><span style="color:#F97583">=</span><span style="color:#F97583"> try?</span><span style="color:#79B8FF"> divideNumbers</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">0</span><span style="color:#E1E4E8">) </span><span style="color:#6A737D">// nil</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// do-catch 없이도 사용 가능</span></span>
+<span class="line"><span style="color:#F97583">if</span><span style="color:#F97583"> let</span><span style="color:#E1E4E8"> result </span><span style="color:#F97583">=</span><span style="color:#F97583"> try?</span><span style="color:#79B8FF"> divideNumbers</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#79B8FF">    print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"결과: </span><span style="color:#9ECBFF">\(result)</span><span style="color:#9ECBFF">"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">} </span><span style="color:#F97583">else</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#79B8FF">    print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"계산 실패"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
+<h4 id="-try-try-try의-차이점">✅ try, try?, try!의 차이점</h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>방법</th><th>동작</th><th>사용 시기</th></tr></thead><tbody><tr><td><code>try</code></td><td>에러를 던지거나 처리</td><td>에러를 처리하거나 전달할 때</td></tr><tr><td><code>try?</code></td><td>에러 발생 시 nil 반환</td><td>에러가 발생해도 괜찮은 경우</td></tr><tr><td><code>try!</code></td><td>에러 발생 시 앱 크래시</td><td>절대 에러가 발생하지 않는 경우</td></tr></tbody></table>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="swift"><code><span class="line"><span style="color:#6A737D">// ✅ try - 에러 처리</span></span>
+<span class="line"><span style="color:#F97583">do</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#F97583">    let</span><span style="color:#E1E4E8"> result </span><span style="color:#F97583">=</span><span style="color:#F97583"> try</span><span style="color:#79B8FF"> divideNumbers</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#79B8FF">    print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"결과: </span><span style="color:#9ECBFF">\(result)</span><span style="color:#9ECBFF">"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">} </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#79B8FF">    print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"에러: </span><span style="color:#9ECBFF">\(error)</span><span style="color:#9ECBFF">"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// ✅ try? - 옵셔널 처리</span></span>
+<span class="line"><span style="color:#F97583">let</span><span style="color:#E1E4E8"> result </span><span style="color:#F97583">=</span><span style="color:#F97583"> try?</span><span style="color:#79B8FF"> divideNumbers</span><span style="color:#E1E4E8">(</span><span style="color:#79B8FF">10</span><span style="color:#E1E4E8">, </span><span style="color:#79B8FF">2</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#F97583">if</span><span style="color:#F97583"> let</span><span style="color:#E1E4E8"> result </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> result {</span></span>
+<span class="line"><span style="color:#79B8FF">    print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"결과: </span><span style="color:#9ECBFF">\(result)</span><span style="color:#9ECBFF">"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">} </span><span style="color:#F97583">else</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#79B8FF">    print</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"계산 실패"</span><span style="color:#E1E4E8">)</span></span>
+<span class="line"><span style="color:#E1E4E8">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#6A737D">// ❌ try! - 위험한 사용 (절대 사용하지 말 것)</span></span>
+<span class="line"><span style="color:#6A737D">// let result = try! divideNumbers(10, 0) // 앱 크래시 발생</span></span></code></pre>
+<hr>
+<h3 id="8-오늘의-핵심-정리">8. 오늘의 핵심 정리</h3>
+<h4 id="-옵셔널의-핵심-개념">✅ 옵셔널의 핵심 개념</h4>
+<ul>
+<li><strong>안전성</strong>: nil 값을 명시적으로 처리하여 런타임 에러 방지</li>
+<li><strong>명확성</strong>: “값이 없다”는 것을 nil로 명확하게 표현</li>
+<li><strong>유연성</strong>: 다양한 언래핑 방법으로 상황에 맞는 처리</li>
+</ul>
+<h4 id="-언래핑-방법-선택-가이드">✅ 언래핑 방법 선택 가이드</h4>
+<ul>
+<li><strong>if let</strong>: 여러 분기 처리, 조건부 로직</li>
+<li><strong>guard let</strong>: 조기 종료, 함수 전체에서 사용</li>
+<li><strong>nil 병합</strong>: 기본값 제공, 간단한 처리</li>
+<li><strong>옵셔널 체이닝</strong>: 안전한 속성/메서드 접근</li>
+</ul>
+<h4 id="-에러-처리-방법">✅ 에러 처리 방법</h4>
+<ul>
+<li><strong>try</strong>: 정석적인 에러 처리</li>
+<li><strong>try?</strong>: 에러가 발생해도 괜찮은 경우</li>
+<li><strong>try!</strong>: 절대 사용하지 말 것 (앱 크래시 위험)</li>
+</ul>
+<hr>  </div> </article> </main> <footer data-astro-cid-sz7xmlte>
+&copy; 2025 Your name here. All rights reserved.
+<div class="social-links" data-astro-cid-sz7xmlte> <a href="https://m.webtoo.ls/@astro" target="_blank" data-astro-cid-sz7xmlte> <span class="sr-only" data-astro-cid-sz7xmlte>Follow Astro on Mastodon</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" astro-icon="social/mastodon" data-astro-cid-sz7xmlte><path fill="currentColor" d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" data-astro-cid-sz7xmlte></path></svg> </a> <a href="https://twitter.com/astrodotbuild" target="_blank" data-astro-cid-sz7xmlte> <span class="sr-only" data-astro-cid-sz7xmlte>Follow Astro on Twitter</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" astro-icon="social/twitter" data-astro-cid-sz7xmlte><path fill="currentColor" d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" data-astro-cid-sz7xmlte></path></svg> </a> <a href="https://github.com/withastro/astro" target="_blank" data-astro-cid-sz7xmlte> <span class="sr-only" data-astro-cid-sz7xmlte>Go to Astro's GitHub repo</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" astro-icon="social/github" data-astro-cid-sz7xmlte><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" data-astro-cid-sz7xmlte></path></svg> </a> </div> </footer>  </body></html>

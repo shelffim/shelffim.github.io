@@ -1,0 +1,171 @@
+<!DOCTYPE html><html lang="en" data-astro-cid-bvzihdzo> <head><!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="sitemap" href="/sitemap-index.xml"><link rel="alternate" type="application/rss+xml" title="Astro Blog" href="https://shelffim.github.io/rss.xml"><meta name="generator" content="Astro v5.9.4"><!-- Font preloads --><link rel="preload" href="/fonts/atkinson-regular.woff" as="font" type="font/woff" crossorigin><link rel="preload" href="/fonts/atkinson-bold.woff" as="font" type="font/woff" crossorigin><!-- Canonical URL --><link rel="canonical" href="https://shelffim.github.io/blog/java-mid1/2025-09-14-kimyounghan-java-mid1-part7/"><!-- Primary Meta Tags --><title>김영한의 자바 중급 1편 강의 - part 7: 날짜와 시간</title><meta name="title" content="김영한의 자바 중급 1편 강의 - part 7: 날짜와 시간"><meta name="description" content="김영한님의 자바 중급 1편 강의 part 7(날짜와 시간) 학습 정리"><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://shelffim.github.io/blog/java-mid1/2025-09-14-kimyounghan-java-mid1-part7/"><meta property="og:title" content="김영한의 자바 중급 1편 강의 - part 7: 날짜와 시간"><meta property="og:description" content="김영한님의 자바 중급 1편 강의 part 7(날짜와 시간) 학습 정리"><meta property="og:image" content="https://shelffim.github.io/_astro/blog-placeholder-1.Bx0Zcyzv.jpg"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://shelffim.github.io/blog/java-mid1/2025-09-14-kimyounghan-java-mid1-part7/"><meta property="twitter:title" content="김영한의 자바 중급 1편 강의 - part 7: 날짜와 시간"><meta property="twitter:description" content="김영한님의 자바 중급 1편 강의 part 7(날짜와 시간) 학습 정리"><meta property="twitter:image" content="https://shelffim.github.io/_astro/blog-placeholder-1.Bx0Zcyzv.jpg"><style>:root{--accent: #2337ff;--accent-dark: #000d8a;--black: 15, 18, 25;--gray: 96, 115, 159;--gray-light: 229, 233, 240;--gray-dark: 34, 41, 57;--gray-gradient: rgba(var(--gray-light), 50%), #fff;--box-shadow: 0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%), 0 16px 32px rgba(var(--gray), 33%)}@font-face{font-family:Atkinson;src:url(/fonts/atkinson-regular.woff) format("woff");font-weight:400;font-style:normal;font-display:swap}@font-face{font-family:Atkinson;src:url(/fonts/atkinson-bold.woff) format("woff");font-weight:700;font-style:normal;font-display:swap}body{font-family:Atkinson,sans-serif;margin:0;padding:0;text-align:left;background:linear-gradient(var(--gray-gradient)) no-repeat;background-size:100% 600px;word-wrap:break-word;overflow-wrap:break-word;color:rgb(var(--gray-dark));font-size:20px;line-height:1.7}main{width:720px;max-width:calc(100% - 2em);margin:auto;padding:3em 1em}h1,h2,h3,h4,h5,h6{margin:0 0 .5rem;color:rgb(var(--black));line-height:1.2}h1{font-size:3.052em}h2{font-size:2.441em}h3{font-size:1.953em}h4{font-size:1.563em}h5{font-size:1.25em}strong,b{font-weight:700}a,a:hover{color:var(--accent)}p{margin-bottom:1em}.prose p{margin-bottom:2em}textarea{width:100%;font-size:16px}input{font-size:16px}table{width:100%}img{max-width:100%;height:auto;border-radius:8px}code{padding:2px 5px;background-color:rgb(var(--gray-light));border-radius:2px}pre{padding:1.5em;border-radius:8px}pre>code{all:unset}blockquote{border-left:4px solid var(--accent);padding:0 0 0 20px;margin:0;font-size:1.333em}hr{border:none;border-top:1px solid rgb(var(--gray-light))}@media (max-width: 720px){body{font-size:18px}main{padding:1em}}.sr-only{border:0;padding:0;margin:0;position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px 1px 1px 1px);clip:rect(1px,1px,1px,1px);clip-path:inset(50%);white-space:nowrap}a[data-astro-cid-eimmu3lg]{display:inline-block;text-decoration:none}a[data-astro-cid-eimmu3lg].active{font-weight:bolder;text-decoration:underline}header[data-astro-cid-3ef6ksr2]{margin:0;padding:0 1em;background:#fff;box-shadow:0 2px 8px rgba(var(--black),5%)}h2[data-astro-cid-3ef6ksr2]{margin:0;font-size:1em}h2[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2],h2[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2].active{text-decoration:none}nav[data-astro-cid-3ef6ksr2]{display:flex;align-items:center;justify-content:space-between}nav[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2]{padding:1em .5em;color:var(--black);border-bottom:4px solid transparent;text-decoration:none}nav[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2].active{text-decoration:none;border-bottom-color:var(--accent)}.social-links[data-astro-cid-3ef6ksr2],.social-links[data-astro-cid-3ef6ksr2] a[data-astro-cid-3ef6ksr2]{display:flex}@media (max-width: 720px){.social-links[data-astro-cid-3ef6ksr2]{display:none}}footer[data-astro-cid-sz7xmlte]{padding:2em 1em 6em;background:linear-gradient(var(--gray-gradient)) no-repeat;color:rgb(var(--gray));text-align:center}.social-links[data-astro-cid-sz7xmlte]{display:flex;justify-content:center;gap:1em;margin-top:1em}.social-links[data-astro-cid-sz7xmlte] a[data-astro-cid-sz7xmlte]{text-decoration:none;color:rgb(var(--gray))}.social-links[data-astro-cid-sz7xmlte] a[data-astro-cid-sz7xmlte]:hover{color:rgb(var(--gray-dark))}
+main[data-astro-cid-bvzihdzo]{width:calc(100% - 2em);max-width:100%;margin:0}.hero-image[data-astro-cid-bvzihdzo]{width:100%}.hero-image[data-astro-cid-bvzihdzo] img[data-astro-cid-bvzihdzo]{display:block;margin:0 auto;border-radius:12px;box-shadow:var(--box-shadow)}.prose[data-astro-cid-bvzihdzo]{width:720px;max-width:calc(100% - 2em);margin:auto;padding:1em;color:rgb(var(--gray-dark))}.title[data-astro-cid-bvzihdzo]{margin-bottom:1em;padding:1em 0;text-align:center;line-height:1}.title[data-astro-cid-bvzihdzo] h1[data-astro-cid-bvzihdzo]{margin:0 0 .5em}.date[data-astro-cid-bvzihdzo]{margin-bottom:.5em;color:rgb(var(--gray))}.last-updated-on[data-astro-cid-bvzihdzo]{font-style:italic}
+</style></head> <body data-astro-cid-bvzihdzo> <header data-astro-cid-3ef6ksr2> <nav data-astro-cid-3ef6ksr2> <h2 data-astro-cid-3ef6ksr2><a href="/" data-astro-cid-3ef6ksr2>Astro Blog</a></h2> <div class="internal-links" data-astro-cid-3ef6ksr2> <a href="/" data-astro-cid-3ef6ksr2="true" data-astro-cid-eimmu3lg> Home </a>  <a href="/blog" class="active" data-astro-cid-3ef6ksr2="true" data-astro-cid-eimmu3lg> Blog </a>  <a href="/about" data-astro-cid-3ef6ksr2="true" data-astro-cid-eimmu3lg> About </a>  </div> <div class="social-links" data-astro-cid-3ef6ksr2> <a href="https://m.webtoo.ls/@astro" target="_blank" data-astro-cid-3ef6ksr2> <span class="sr-only" data-astro-cid-3ef6ksr2>Follow Astro on Mastodon</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" data-astro-cid-3ef6ksr2><path fill="currentColor" d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" data-astro-cid-3ef6ksr2></path></svg> </a> <a href="https://twitter.com/astrodotbuild" target="_blank" data-astro-cid-3ef6ksr2> <span class="sr-only" data-astro-cid-3ef6ksr2>Follow Astro on Twitter</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" data-astro-cid-3ef6ksr2><path fill="currentColor" d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" data-astro-cid-3ef6ksr2></path></svg> </a> <a href="https://github.com/withastro/astro" target="_blank" data-astro-cid-3ef6ksr2> <span class="sr-only" data-astro-cid-3ef6ksr2>Go to Astro's GitHub repo</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" data-astro-cid-3ef6ksr2><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" data-astro-cid-3ef6ksr2></path></svg> </a> </div> </nav> </header>  <main data-astro-cid-bvzihdzo> <article data-astro-cid-bvzihdzo> <div class="hero-image" data-astro-cid-bvzihdzo>  </div> <div class="prose" data-astro-cid-bvzihdzo> <div class="title" data-astro-cid-bvzihdzo> <div class="date" data-astro-cid-bvzihdzo> <time datetime="2025-09-14T00:00:00.000Z"> Sep 14, 2025 </time>  </div> <h1 data-astro-cid-bvzihdzo>김영한의 자바 중급 1편 강의 - part 7: 날짜와 시간</h1> <hr data-astro-cid-bvzihdzo> </div>  <blockquote>
+<p><strong>출처</strong>: <a href="https://inf.run/XGzSo">김영한의 자바 중급 1편 강의</a> - Section 7: 날짜와 시간</p>
+</blockquote>
+<h2 id="-날짜와-시간-라이브러리가-필요한-이유">📅 날짜와 시간 라이브러리가 필요한 이유</h2>
+<ol>
+<li><strong>날짜와 시간 차이 계산</strong></li>
+<li><strong>윤년 계산</strong></li>
+<li><strong>일광 절약 시간 변환</strong></li>
+<li><strong>타임존 계산</strong></li>
+</ol>
+<blockquote>
+<p>💡 <strong>중요</strong>: 모든 날짜 클래스는 불변이다. 변경이 필요한 경우 새로운 객체를 생성해서 반환하므로 반환값을 꼭 받아야 한다.</p>
+</blockquote>
+<blockquote>
+<p>⚠️ <strong>주의</strong>: <code>LocalDate</code>, <code>LocalTime</code>, <code>LocalDateTime</code>은 세계 시간대를 고려하지 않아서 타임존이 적용되지 않는다. 특정 지역의 날짜와 시간만 고려할 때 사용한다.</p>
+</blockquote>
+<h2 id="️-localdate">🗓️ LocalDate</h2>
+<h3 id="생성-방법">생성 방법</h3>
+<ul>
+<li><code>now()</code>: 현재 시간을 기준으로 생성</li>
+<li><code>of()</code>: 특정 날짜를 기준으로 생성, 년, 월, 일을 입력받아 생성</li>
+</ul>
+<h3 id="계산-방법">계산 방법</h3>
+<ul>
+<li><code>plusDays()</code>: 일 추가</li>
+<li>다양한 <code>plusXXX()</code>: 다양한 단위 추가</li>
+</ul>
+<h2 id="-localtime">⏰ LocalTime</h2>
+<h3 id="생성-방법-1">생성 방법</h3>
+<ul>
+<li><code>now()</code>: 현재 시간을 기준으로 생성</li>
+<li><code>of()</code>: 특정 시간을 기준으로 생성, 시, 분, 초를 입력받아 생성</li>
+</ul>
+<h3 id="계산-방법-1">계산 방법</h3>
+<ul>
+<li><code>plusSeconds()</code>: 초 추가</li>
+<li>다양한 <code>plusXXX()</code>: 다양한 단위 추가</li>
+</ul>
+<h2 id="-localdatetime">📆 LocalDateTime</h2>
+<h3 id="생성-방법-2">생성 방법</h3>
+<ul>
+<li><code>now()</code>: 현재 날짜와 시간을 기준으로 생성</li>
+<li><code>of()</code>: 특정 날짜와 시간을 기준으로 생성</li>
+</ul>
+<h3 id="분리-방법">분리 방법</h3>
+<ul>
+<li><code>toLocalDate()</code>: 날짜 분리</li>
+<li><code>toLocalTime()</code>: 시간 분리</li>
+</ul>
+<h3 id="합체-방법">합체 방법</h3>
+<ul>
+<li><code>LocalDateTime.of(localDate, localTime)</code>: 날짜와 시간을 합친다.</li>
+</ul>
+<h3 id="계산-방법-2">계산 방법</h3>
+<ul>
+<li>다양한 <code>plusXXX()</code>: 특정 날짜와 시간을 더한다.</li>
+</ul>
+<h3 id="비교-방법">비교 방법</h3>
+<ul>
+<li><code>isBefore()</code>: 현재 날짜와 시간이 이전이라면 true를 반환한다.</li>
+<li><code>isAfter()</code>: 현재 날짜와 시간이 이후라면 true를 반환한다.</li>
+<li><code>isEqual()</code>: 현재 날짜와 시간이 같다면 true를 반환한다.</li>
+</ul>
+<h2 id="-zoneddatetime">🌍 ZonedDateTime</h2>
+<p><code>ZonedDateTime</code>은 타임존을 고려하여 날짜와 시간을 계산할 때 사용한다. 시간대를 고려해야 할 때 실제 사용하는 날짜와 시간 정보를 나타내는 데 적합하다. 구체적인 지역 시간대를 다룰 때 사용하며, 일광 절약 시간을 자동으로 처리할 수 있다.</p>
+<h3 id="zoneid">ZoneId</h3>
+<ul>
+<li>자바는 타임존을 <code>ZoneId</code> 클래스로 제공한다.</li>
+</ul>
+<h4 id="생성-방법-3">생성 방법</h4>
+<ul>
+<li><code>ZoneId.systemDefault()</code>: 시스템 기본 타임존을 반환한다.</li>
+<li><code>ZoneId.of(String zoneId)</code>: 특정 타임존을 반환한다.</li>
+</ul>
+<h3 id="zoneddatetime">ZonedDateTime</h3>
+<h4 id="생성-방법-4">생성 방법</h4>
+<ul>
+<li><code>now()</code>: 현재 날짜와 시간을 기준으로 생성, ZoneId는 현재 시스템을 따른다.</li>
+<li><code>of()</code>: 특정 날짜와 시간을 기준으로 생성, ZoneId를 추가해야 한다. LocalDateTime에 ZoneId를 추가해서 생성할 수 있다.</li>
+</ul>
+<h4 id="타임존-변경-방법">타임존 변경 방법</h4>
+<ul>
+<li><code>withZoneSameInstant(ZoneId zoneId)</code>: 타임존을 변경한다. 타임존에 맞추어 시간도 변경된다.</li>
+</ul>
+<h2 id="️-offsetdatetime">⏱️ OffsetDateTime</h2>
+<p><code>OffsetDateTime</code>은 타임존은 없고 고정된 오프셋만 포함한다. UTC로부터의 고정된 오프셋을 나타내는 데 적합하다. ZoneId가 없으므로 일광 절약 시간제가 적용되지 않는다. 지역 시간대의 복잡성을 고려하지 않는다.</p>
+<h3 id="생성-방법-5">생성 방법</h3>
+<ul>
+<li><code>now()</code>: 현재 날짜와 시간을 기준으로 생성</li>
+<li><code>of()</code>: 특정 날짜와 시간을 기준으로 생성, ZoneOffset을 추가해야 한다.</li>
+</ul>
+<h2 id="-instant">⚡ Instant</h2>
+<p><code>Instant</code>는 UTC를 기준으로 하는, 시간의 한 지점을 나타낸다. 날짜와 시간을 나노초 정밀도로 표현한다. Epoch 시간을 다루는 클래스이다. 전세계적인 시간 기준이 필요하거나 시간대 변환 없이 시간 계산이 필요하거나 데이터 저장 및 교환 할 때 사용한다.</p>
+<h3 id="장점">장점</h3>
+<ul>
+<li><strong>시간대 독립성</strong>: 시간대에 영향을 받지 않아 어디서나 동일한 시점을 가리키는데 유용하다.</li>
+<li><strong>고정된 기준점</strong>: UTC를 기준으로 하기 때문에, 시간 계산 및 비교가 명확하고 일관된다.</li>
+</ul>
+<h3 id="단점">단점</h3>
+<ul>
+<li><strong>사용자 친화적이지 않다</strong></li>
+<li><strong>시간대 정보 부재</strong>: 시간대 정보가 없기 때문에 특정 지역의 날짜와 시간으로 변환하려면 추가적인 작업이 필요하다.</li>
+</ul>
+<h3 id="생성-방법-6">생성 방법</h3>
+<ul>
+<li><code>now()</code>: UTC를 기준 현재 시간의 Instant를 생성</li>
+<li><code>from()</code>: 다른 타입의 날짜와 시간을 기준으로 Instant를 생성</li>
+<li><code>ofEpochSecond(long epochSecond)</code>: Epoch 시간을 기준으로 Instant를 생성, 0초를 선택하면 1970년 1월 1일 0시 0분 0초를 의미한다.</li>
+</ul>
+<h3 id="계산-방법-3">계산 방법</h3>
+<ul>
+<li><code>plusSeconds()</code>: 초 추가</li>
+<li>다양한 <code>plusXXX()</code>: 다양한 단위 추가</li>
+</ul>
+<h3 id="조회-방법">조회 방법</h3>
+<ul>
+<li><code>getEpochSecond()</code>: Epoch 시간을 기준으로 흐른 초를 반환한다.</li>
+</ul>
+<h2 id="-period">📊 Period</h2>
+<p><code>Period</code>는 두 날짜 사이의 간격을 년, 월, 일 단위로 나타낸다.</p>
+<h3 id="주요-메서드">주요 메서드</h3>
+<ul>
+<li><code>getYears()</code>, <code>getMonths()</code>, <code>getDays()</code></li>
+</ul>
+<h3 id="생성-방식">생성 방식</h3>
+<ul>
+<li><code>of(년, 월, 일)</code>: 특정 기간을 지정해서 Period를 생성</li>
+<li><code>ofDays()</code>, <code>ofMonths()</code>, <code>ofYears()</code></li>
+</ul>
+<h3 id="기간-차이">기간 차이</h3>
+<ul>
+<li><code>Period.between(startDate, endDate)</code>: 두 날짜 사이의 기간을 반환한다.</li>
+</ul>
+<h2 id="-duration">⏳ Duration</h2>
+<p><code>Duration</code>은 두 시간 사이의 간격을 시, 분, 초(나노초) 단위로 나타낸다.</p>
+<h3 id="주요-메서드-1">주요 메서드</h3>
+<ul>
+<li><code>toHours()</code>, <code>toMinutes()</code>, <code>getSeconds()</code>, <code>getNano()</code></li>
+</ul>
+<h3 id="생성-방법-7">생성 방법</h3>
+<ul>
+<li><code>of()</code>: 특정 시간을 지정해서 Duration을 생성
+<ul>
+<li><code>ofSeconds()</code>, <code>ofMinutes()</code>, <code>ofHours()</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="시간-차이">시간 차이</h3>
+<ul>
+<li><code>Duration.between(startDate, endDate)</code>: 두 시간 사이의 시간을 반환한다.</li>
+</ul>
+<h2 id="-chronofield--chronounit">🔧 ChronoField &#x26; ChronoUnit</h2>
+<h3 id="chronofield">ChronoField</h3>
+<p>날짜와 시간의 필드를 조회하려면 <code>ChronoField</code>를 사용한다. 날짜와 시간의 필드는 열거형으로 정의되어 있다.</p>
+<h3 id="chronounit">ChronoUnit</h3>
+<p>날짜와 시간을 조작하려면 <code>ChronoUnit</code>을 사용한다. 날짜와 시간을 조작하는 단위는 열거형으로 정의되어 있다.</p>
+<h2 id="-포맷팅--파싱">📝 포맷팅 &#x26; 파싱</h2>
+<h3 id="포맷팅">포맷팅</h3>
+<p>날짜와 시간 데이터를 원하는 포멧의 문자열로 변경하는 것</p>
+<ul>
+<li><code>DateTimeFormatter</code> 클래스를 사용해서 <code>ofPattern()</code> 메서드를 사용해서 포멧을 지정할 수 있다.</li>
+</ul>
+<h3 id="파싱">파싱</h3>
+<p>문자열을 날짜와 시간 데이터로 변경하는 것</p>
+<ul>
+<li><code>DateTimeFormatter</code> 클래스를 사용해서 <code>parse(Date, formatter)</code> 메서드를 사용해서 파싱할 수 있다.</li>
+</ul>  </div> </article> </main> <footer data-astro-cid-sz7xmlte>
+&copy; 2025 Your name here. All rights reserved.
+<div class="social-links" data-astro-cid-sz7xmlte> <a href="https://m.webtoo.ls/@astro" target="_blank" data-astro-cid-sz7xmlte> <span class="sr-only" data-astro-cid-sz7xmlte>Follow Astro on Mastodon</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" astro-icon="social/mastodon" data-astro-cid-sz7xmlte><path fill="currentColor" d="M11.19 12.195c2.016-.24 3.77-1.475 3.99-2.603.348-1.778.32-4.339.32-4.339 0-3.47-2.286-4.488-2.286-4.488C12.062.238 10.083.017 8.027 0h-.05C5.92.017 3.942.238 2.79.765c0 0-2.285 1.017-2.285 4.488l-.002.662c-.004.64-.007 1.35.011 2.091.083 3.394.626 6.74 3.78 7.57 1.454.383 2.703.463 3.709.408 1.823-.1 2.847-.647 2.847-.647l-.06-1.317s-1.303.41-2.767.36c-1.45-.05-2.98-.156-3.215-1.928a3.614 3.614 0 0 1-.033-.496s1.424.346 3.228.428c1.103.05 2.137-.064 3.188-.189zm1.613-2.47H11.13v-4.08c0-.859-.364-1.295-1.091-1.295-.804 0-1.207.517-1.207 1.541v2.233H7.168V5.89c0-1.024-.403-1.541-1.207-1.541-.727 0-1.091.436-1.091 1.296v4.079H3.197V5.522c0-.859.22-1.541.66-2.046.456-.505 1.052-.764 1.793-.764.856 0 1.504.328 1.933.983L8 4.39l.417-.695c.429-.655 1.077-.983 1.934-.983.74 0 1.336.259 1.791.764.442.505.661 1.187.661 2.046v4.203z" data-astro-cid-sz7xmlte></path></svg> </a> <a href="https://twitter.com/astrodotbuild" target="_blank" data-astro-cid-sz7xmlte> <span class="sr-only" data-astro-cid-sz7xmlte>Follow Astro on Twitter</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" astro-icon="social/twitter" data-astro-cid-sz7xmlte><path fill="currentColor" d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" data-astro-cid-sz7xmlte></path></svg> </a> <a href="https://github.com/withastro/astro" target="_blank" data-astro-cid-sz7xmlte> <span class="sr-only" data-astro-cid-sz7xmlte>Go to Astro's GitHub repo</span> <svg viewBox="0 0 16 16" aria-hidden="true" width="32" height="32" astro-icon="social/github" data-astro-cid-sz7xmlte><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" data-astro-cid-sz7xmlte></path></svg> </a> </div> </footer>  </body></html>

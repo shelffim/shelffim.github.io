@@ -7,14 +7,11 @@ main[data-astro-cid-bvzihdzo]{width:calc(100% - 2em);max-width:100%;margin:0}.he
 <p>하나의 try 블록에 여러 개의 catch 블록을 사용할 수 있습니다. 하나의 try 블록에 정상적인 로직을 작성하고 각 catch 블록에 예외 처리 로직을 작성해서 코드의 핵심 흐름을 파악하기 쉽게 만듭니다.</p>
 <pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">try</span><span style="color:#E1E4E8"> {</span></span>
 <span class="line"><span style="color:#6A737D">    // 정상적인 로직</span></span>
-<span class="line"><span style="color:#F97583">    int</span><span style="color:#E1E4E8"> result </span><span style="color:#F97583">=</span><span style="color:#B392F0"> divide</span><span style="color:#E1E4E8">(a, b);</span></span>
+<span class="line"><span style="color:#F97583">    int</span><span style="color:#E1E4E8"> result </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> 10</span><span style="color:#F97583"> /</span><span style="color:#79B8FF"> 0</span><span style="color:#E1E4E8">;  </span><span style="color:#6A737D">// 0으로 나누기 시도</span></span>
 <span class="line"><span style="color:#E1E4E8">    System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"결과: "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> result);</span></span>
 <span class="line"><span style="color:#E1E4E8">} </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (ArithmeticException </span><span style="color:#FFAB70">e</span><span style="color:#E1E4E8">) {</span></span>
 <span class="line"><span style="color:#6A737D">    // 산술 예외 처리</span></span>
 <span class="line"><span style="color:#E1E4E8">    System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"0으로 나눌 수 없습니다."</span><span style="color:#E1E4E8">);</span></span>
-<span class="line"><span style="color:#E1E4E8">} </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (IllegalArgumentException </span><span style="color:#FFAB70">e</span><span style="color:#E1E4E8">) {</span></span>
-<span class="line"><span style="color:#6A737D">    // 잘못된 인수 예외 처리</span></span>
-<span class="line"><span style="color:#E1E4E8">    System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"잘못된 인수입니다."</span><span style="color:#E1E4E8">);</span></span>
 <span class="line"><span style="color:#E1E4E8">} </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (Exception </span><span style="color:#FFAB70">e</span><span style="color:#E1E4E8">) {</span></span>
 <span class="line"><span style="color:#6A737D">    // 기타 예외 처리</span></span>
 <span class="line"><span style="color:#E1E4E8">    System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"예상치 못한 오류가 발생했습니다."</span><span style="color:#E1E4E8">);</span></span>
@@ -23,32 +20,31 @@ main[data-astro-cid-bvzihdzo]{width:calc(100% - 2em);max-width:100%;margin:0}.he
 <p>예외를 잡는 주된 목적은 예외 발생 시 프로그램이 갑자기 종료되는 것을 막고, 오류 상황을 처리하여 정상 흐름으로 복귀하거나 다음 단계로 진행하기 위해서입니다.</p>
 <h2 id="finally-블록">finally 블록</h2>
 <p>finally 블록은 예외 발생 여부와 상관없이 항상 try 블록 종료 시 실행됩니다. finally 블록은 리소스 해제 보장을 위해 사용합니다.</p>
-<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">FileInputStream fis </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> null</span><span style="color:#E1E4E8">;</span></span>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#E1E4E8">String data </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> null</span><span style="color:#E1E4E8">;</span></span>
 <span class="line"><span style="color:#F97583">try</span><span style="color:#E1E4E8"> {</span></span>
-<span class="line"><span style="color:#E1E4E8">    fis </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> FileInputStream</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"file.txt"</span><span style="color:#E1E4E8">);</span></span>
-<span class="line"><span style="color:#6A737D">    // 파일 처리 로직</span></span>
-<span class="line"><span style="color:#E1E4E8">} </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (IOException </span><span style="color:#FFAB70">e</span><span style="color:#E1E4E8">) {</span></span>
-<span class="line"><span style="color:#E1E4E8">    e.</span><span style="color:#B392F0">printStackTrace</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">    data </span><span style="color:#F97583">=</span><span style="color:#9ECBFF"> "안녕하세요"</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">    System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(data.</span><span style="color:#B392F0">length</span><span style="color:#E1E4E8">());  </span><span style="color:#6A737D">// 정상 실행</span></span>
+<span class="line"><span style="color:#E1E4E8">} </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (NullPointerException </span><span style="color:#FFAB70">e</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">    System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"데이터가 null입니다."</span><span style="color:#E1E4E8">);</span></span>
 <span class="line"><span style="color:#E1E4E8">} </span><span style="color:#F97583">finally</span><span style="color:#E1E4E8"> {</span></span>
-<span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> (fis </span><span style="color:#F97583">!=</span><span style="color:#79B8FF"> null</span><span style="color:#E1E4E8">) {</span></span>
-<span class="line"><span style="color:#F97583">        try</span><span style="color:#E1E4E8"> {</span></span>
-<span class="line"><span style="color:#E1E4E8">            fis.</span><span style="color:#B392F0">close</span><span style="color:#E1E4E8">();</span></span>
-<span class="line"><span style="color:#E1E4E8">        } </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (IOException </span><span style="color:#FFAB70">e</span><span style="color:#E1E4E8">) {</span></span>
-<span class="line"><span style="color:#E1E4E8">            e.</span><span style="color:#B392F0">printStackTrace</span><span style="color:#E1E4E8">();</span></span>
-<span class="line"><span style="color:#E1E4E8">        }</span></span>
-<span class="line"><span style="color:#E1E4E8">    }</span></span>
+<span class="line"><span style="color:#E1E4E8">    System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"finally 블록은 항상 실행됩니다."</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">    data </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> null</span><span style="color:#E1E4E8">;  </span><span style="color:#6A737D">// 리소스 정리</span></span>
 <span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
 <h2 id="예외-계층-구조">예외 계층 구조</h2>
 <p>예외를 부모-자식 계층 구조로 구성해서 상위 예외를 통해 관련 예외들을 묶어 일반적인 처리가 가능하고, 하위 특정 예외를 통해 더욱 세분화된 맞춤형 처리를 할 수 있습니다.</p>
 <p>예외 계층 구조 시, catch 블록을 자식 예외 클래스부터 부모 예외 클래스 순으로 작성합니다. 상위 예외를 먼저 작성하면 하위 예외는 실행되지 않습니다.</p>
 <pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">try</span><span style="color:#E1E4E8"> {</span></span>
-<span class="line"><span style="color:#6A737D">    // 예외가 발생할 수 있는 코드</span></span>
-<span class="line"><span style="color:#E1E4E8">} </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (FileNotFoundException </span><span style="color:#FFAB70">e</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">    String str </span><span style="color:#F97583">=</span><span style="color:#79B8FF"> null</span><span style="color:#E1E4E8">;</span></span>
+<span class="line"><span style="color:#E1E4E8">    System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(str.</span><span style="color:#B392F0">length</span><span style="color:#E1E4E8">());  </span><span style="color:#6A737D">// NullPointerException 발생</span></span>
+<span class="line"><span style="color:#E1E4E8">} </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (NullPointerException </span><span style="color:#FFAB70">e</span><span style="color:#E1E4E8">) {</span></span>
 <span class="line"><span style="color:#6A737D">    // 구체적인 예외 처리 (자식)</span></span>
-<span class="line"><span style="color:#E1E4E8">} </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (IOException </span><span style="color:#FFAB70">e</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">    System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"null 값에 접근했습니다."</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">} </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (RuntimeException </span><span style="color:#FFAB70">e</span><span style="color:#E1E4E8">) {</span></span>
 <span class="line"><span style="color:#6A737D">    // 일반적인 예외 처리 (부모)</span></span>
+<span class="line"><span style="color:#E1E4E8">    System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"런타임 예외가 발생했습니다."</span><span style="color:#E1E4E8">);</span></span>
 <span class="line"><span style="color:#E1E4E8">} </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (Exception </span><span style="color:#FFAB70">e</span><span style="color:#E1E4E8">) {</span></span>
 <span class="line"><span style="color:#6A737D">    // 최상위 예외 처리</span></span>
+<span class="line"><span style="color:#E1E4E8">    System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"예외가 발생했습니다."</span><span style="color:#E1E4E8">);</span></span>
 <span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
 <h2 id="체크-예외-vs-언체크-예외">체크 예외 vs 언체크 예외</h2>
 <p>대부분의 예외는 복구 불가능하기 때문에 체크 예외를 선언하면 throws 선언이 늘어나 코드 복잡성이 증가하기 때문에 언체크 예외를 사용해 공통 처리를 더 선호합니다.</p>
@@ -56,20 +52,25 @@ main[data-astro-cid-bvzihdzo]{width:calc(100% - 2em);max-width:100%;margin:0}.he
 <p>exceptionHandler는 예외를 처리하는 메서드를 정의합니다. 예외도 객체이므로 필요하면 instanceof 연산자를 사용하여 예외 타입을 확인하고 처리할 수 있습니다.</p>
 <pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">public</span><span style="color:#F97583"> void</span><span style="color:#B392F0"> exceptionHandler</span><span style="color:#E1E4E8">(Exception e) {</span></span>
 <span class="line"><span style="color:#F97583">    if</span><span style="color:#E1E4E8"> (e </span><span style="color:#F97583">instanceof</span><span style="color:#E1E4E8"> ArithmeticException) {</span></span>
-<span class="line"><span style="color:#E1E4E8">        System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"산술 예외 발생"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"산술 예외 발생: 0으로 나눌 수 없습니다."</span><span style="color:#E1E4E8">);</span></span>
 <span class="line"><span style="color:#E1E4E8">    } </span><span style="color:#F97583">else</span><span style="color:#F97583"> if</span><span style="color:#E1E4E8"> (e </span><span style="color:#F97583">instanceof</span><span style="color:#E1E4E8"> NullPointerException) {</span></span>
-<span class="line"><span style="color:#E1E4E8">        System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"널 포인터 예외 발생"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">        System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"널 포인터 예외 발생: null 값에 접근했습니다."</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">    } </span><span style="color:#F97583">else</span><span style="color:#E1E4E8"> {</span></span>
+<span class="line"><span style="color:#E1E4E8">        System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"기타 예외 발생"</span><span style="color:#E1E4E8">);</span></span>
 <span class="line"><span style="color:#E1E4E8">    }</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#E1E4E8">    e.</span><span style="color:#B392F0">printStackTrace</span><span style="color:#E1E4E8">(); </span><span style="color:#6A737D">// 예외 발생 시 예외 스택 트레이스를 출력</span></span>
 <span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
 <h2 id="try-with-resources">try-with-resources</h2>
 <p>try-with-resources는 리소스를 자동으로 해제하는 기능을 제공합니다. AutoCloseable 인터페이스를 구현한 객체를 사용하면 try 블록이 종료될 때 자동으로 close() 메서드를 호출하여 리소스를 해제합니다.</p>
-<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#F97583">try</span><span style="color:#E1E4E8"> (FileInputStream fis </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> FileInputStream</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"file.txt"</span><span style="color:#E1E4E8">)) {</span></span>
-<span class="line"><span style="color:#6A737D">    // 사용할 자원</span></span>
-<span class="line"><span style="color:#6A737D">    // 자동으로 close() 호출됨</span></span>
-<span class="line"><span style="color:#E1E4E8">} </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (IOException </span><span style="color:#FFAB70">e</span><span style="color:#E1E4E8">) {</span></span>
-<span class="line"><span style="color:#E1E4E8">    e.</span><span style="color:#B392F0">printStackTrace</span><span style="color:#E1E4E8">();</span></span>
+<pre class="astro-code github-dark" style="background-color:#24292e;color:#e1e4e8; overflow-x: auto;" tabindex="0" data-language="java"><code><span class="line"><span style="color:#6A737D">// 간단한 예시: Scanner 사용</span></span>
+<span class="line"><span style="color:#F97583">try</span><span style="color:#E1E4E8"> (Scanner scanner </span><span style="color:#F97583">=</span><span style="color:#F97583"> new</span><span style="color:#B392F0"> Scanner</span><span style="color:#E1E4E8">(System.in)) {</span></span>
+<span class="line"><span style="color:#E1E4E8">    System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"이름을 입력하세요:"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#E1E4E8">    String name </span><span style="color:#F97583">=</span><span style="color:#E1E4E8"> scanner.</span><span style="color:#B392F0">nextLine</span><span style="color:#E1E4E8">();</span></span>
+<span class="line"><span style="color:#E1E4E8">    System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"안녕하세요, "</span><span style="color:#F97583"> +</span><span style="color:#E1E4E8"> name </span><span style="color:#F97583">+</span><span style="color:#9ECBFF"> "님!"</span><span style="color:#E1E4E8">);</span></span>
+<span class="line"><span style="color:#6A737D">    // 자동으로 scanner.close() 호출됨</span></span>
+<span class="line"><span style="color:#E1E4E8">} </span><span style="color:#F97583">catch</span><span style="color:#E1E4E8"> (Exception </span><span style="color:#FFAB70">e</span><span style="color:#E1E4E8">) {</span></span>
+<span class="line"><span style="color:#E1E4E8">    System.out.</span><span style="color:#B392F0">println</span><span style="color:#E1E4E8">(</span><span style="color:#9ECBFF">"입력 오류가 발생했습니다."</span><span style="color:#E1E4E8">);</span></span>
 <span class="line"><span style="color:#E1E4E8">}</span></span></code></pre>
 <p>try-with-resources 구문을 사용하면 다음과 같은 장점이 있습니다:</p>
 <ul>

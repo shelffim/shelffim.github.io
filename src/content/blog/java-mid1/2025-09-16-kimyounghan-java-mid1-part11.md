@@ -13,14 +13,11 @@ description: "김영한님의 자바 중급 1편 강의 part 11(예외처리 2) 
 ```java
 try {
     // 정상적인 로직
-    int result = divide(a, b);
+    int result = 10 / 0;  // 0으로 나누기 시도
     System.out.println("결과: " + result);
 } catch (ArithmeticException e) {
     // 산술 예외 처리
     System.out.println("0으로 나눌 수 없습니다.");
-} catch (IllegalArgumentException e) {
-    // 잘못된 인수 예외 처리
-    System.out.println("잘못된 인수입니다.");
 } catch (Exception e) {
     // 기타 예외 처리
     System.out.println("예상치 못한 오류가 발생했습니다.");
@@ -36,20 +33,15 @@ try {
 finally 블록은 예외 발생 여부와 상관없이 항상 try 블록 종료 시 실행됩니다. finally 블록은 리소스 해제 보장을 위해 사용합니다.
 
 ```java
-FileInputStream fis = null;
+String data = null;
 try {
-    fis = new FileInputStream("file.txt");
-    // 파일 처리 로직
-} catch (IOException e) {
-    e.printStackTrace();
+    data = "안녕하세요";
+    System.out.println(data.length());  // 정상 실행
+} catch (NullPointerException e) {
+    System.out.println("데이터가 null입니다.");
 } finally {
-    if (fis != null) {
-        try {
-            fis.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+    System.out.println("finally 블록은 항상 실행됩니다.");
+    data = null;  // 리소스 정리
 }
 ```
 
@@ -61,13 +53,17 @@ try {
 
 ```java
 try {
-    // 예외가 발생할 수 있는 코드
-} catch (FileNotFoundException e) {
+    String str = null;
+    System.out.println(str.length());  // NullPointerException 발생
+} catch (NullPointerException e) {
     // 구체적인 예외 처리 (자식)
-} catch (IOException e) {
+    System.out.println("null 값에 접근했습니다.");
+} catch (RuntimeException e) {
     // 일반적인 예외 처리 (부모)
+    System.out.println("런타임 예외가 발생했습니다.");
 } catch (Exception e) {
     // 최상위 예외 처리
+    System.out.println("예외가 발생했습니다.");
 }
 ```
 
@@ -82,9 +78,11 @@ exceptionHandler는 예외를 처리하는 메서드를 정의합니다. 예외�
 ```java
 public void exceptionHandler(Exception e) {
     if (e instanceof ArithmeticException) {
-        System.out.println("산술 예외 발생");
+        System.out.println("산술 예외 발생: 0으로 나눌 수 없습니다.");
     } else if (e instanceof NullPointerException) {
-        System.out.println("널 포인터 예외 발생");
+        System.out.println("널 포인터 예외 발생: null 값에 접근했습니다.");
+    } else {
+        System.out.println("기타 예외 발생");
     }
 
     e.printStackTrace(); // 예외 발생 시 예외 스택 트레이스를 출력
@@ -96,11 +94,14 @@ public void exceptionHandler(Exception e) {
 try-with-resources는 리소스를 자동으로 해제하는 기능을 제공합니다. AutoCloseable 인터페이스를 구현한 객체를 사용하면 try 블록이 종료될 때 자동으로 close() 메서드를 호출하여 리소스를 해제합니다.
 
 ```java
-try (FileInputStream fis = new FileInputStream("file.txt")) {
-    // 사용할 자원
-    // 자동으로 close() 호출됨
-} catch (IOException e) {
-    e.printStackTrace();
+// 간단한 예시: Scanner 사용
+try (Scanner scanner = new Scanner(System.in)) {
+    System.out.println("이름을 입력하세요:");
+    String name = scanner.nextLine();
+    System.out.println("안녕하세요, " + name + "님!");
+    // 자동으로 scanner.close() 호출됨
+} catch (Exception e) {
+    System.out.println("입력 오류가 발생했습니다.");
 }
 ```
 

@@ -64,3 +64,49 @@ int value2 = 25;  // 25 % 10 = 5
 
 - **권장 로드 팩터**: 0.75 (75%)
 - **예시**: 배열 크기 100 → 데이터 75개까지 효율적
+
+## 해시 코드와 문자열
+
+해시 인덱스는 배열의 인덱스로 사용해야 하므로 양의 정수로만 사용할 수 있습니다. 문자열을 해시 인덱스로 사용하기 위해서는 문자열을 해시 함수를 통해 해시 코드로 변환하고 해시 코드로 해시 인덱스를 만듭니다.
+
+```java
+String str = "Hello";
+int hashCode = str.hashCode();        // 문자열을 해시 코드로 변환
+int hashIndex = hashCode % arraySize; // 해시 코드로 인덱스 계산
+```
+
+## 객체의 해시 코드
+
+모든 객체가 자신만의 해시 코드를 표현할 수 있는 기능을 가집니다. 객체의 참조값을 기반으로 해시 코드를 만들기 때문에 객체의 인스턴스가 다르면 해시 코드도 다릅니다.
+
+```java
+String str1 = new String("Hello");
+String str2 = new String("Hello");
+// str1.hashCode() != str2.hashCode() (다른 인스턴스)
+```
+
+## hashCode()와 equals() 재정의
+
+해시 자료 구조를 사용하려면 반드시 `hashCode()`와 `equals()` 메서드를 재정의해야 합니다.
+
+### 중요 규칙
+
+두 객체가 `equals()`로 같으면, `hashCode()` 메서드도 같은 값을 반환해야 합니다.
+
+```java
+public class Person {
+    private String name;
+    private int age;
+
+    @Override
+    public boolean equals(Object obj) {
+        // equals 로직
+        return this.name.equals(((Person)obj).name);
+    }
+
+    @Override
+    public int hashCode() {
+        return name.hashCode();  // equals와 일치하는 해시 코드
+    }
+}
+```

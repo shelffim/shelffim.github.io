@@ -79,3 +79,27 @@ first → Node1 ↔ Node2 ↔ Node3 ↔ last
 LinkedList<String> list = new LinkedList<>();
 list.addLast("새 요소");  // O(1) - 빠름
 ```
+
+## 배열을 리스트로 변환
+
+배열을 리스트로 변환하는 방법은 `Arrays.asList()`, `List.of()` 메서드를 사용합니다.
+
+### Arrays.asList() 사용
+
+```java
+String[] array = {"a", "b", "c"};
+List<String> list = Arrays.asList(array);
+```
+
+### List.of() 사용 (Java 9+)
+
+```java
+String[] array = {"a", "b", "c"};
+List<String> list = List.of(array);
+```
+
+<!--
+### 두 메서드의 차이점
+
+- **Arrays.asList()**: 가변 크기 리스트 (기존 배열과 연결됨)
+- **List.of()**: 불변 리스트 (새로운 리스트 생성) -->

@@ -100,6 +100,57 @@ public void run() {
 - **장점**: 상속에서 자유로움, 코드 분리, 자원 관리 효율적
 - **단점**: 코드가 복잡해질 수 있음
 
-## Runnable 공유
+## Runnable 인터페이스 상세
+
+### Runnable 공유
 
 여러 스레드가 동일한 Runnable 인스턴스를 사용할 수 있습니다. 이 경우 각 스레드는 독립적인 스택 프레임에서 `run()` 메서드를 실행합니다.
+
+### 예외 처리 제약
+
+Runnable 인터페이스의 `run()` 메서드는 **체크 예외를 밖으로 던질 수 없습니다**.
+
+**이유**: 자바 오버라이딩 규칙에 따라, 구현 메서드는 인터페이스 메서드가 던질 수 있는 체크 예외의 하위 타입만을 던질 수 있는데, Runnable의 `run()` 메서드는 아무런 체크 예외를 선언하지 않기 때문입니다.
+
+```java
+// ❌ 컴파일 오류
+class BadRunnable implements Runnable {
+    @Override
+    public void run() throws IOException {  // 컴파일 오류!
+        // ...
+    }
+}
+```
+
+## 스레드 생성과 정보 확인
+
+### 스레드 이름 지정
+
+스레드 생성 시 이름을 지정할 수 있습니다. 디버깅 시 매우 유용합니다.
+
+```java
+Thread thread = new Thread(new MyRunnable(), "Worker-Thread");
+thread.start();
+```
+
+### 스레드 정보 확인 메서드
+
+스레드의 다양한 정보를 확인할 수 있는 메서드들이 제공됩니다:
+
+| 메서드             | 설명                            | 예시                      |
+| ------------------ | ------------------------------- | ------------------------- |
+| `threadId()`       | 스레드 ID 반환                  | `thread.threadId()`       |
+| `getName()`        | 스레드 이름 반환                | `thread.getName()`        |
+| `getState()`       | 스레드 상태 반환                | `thread.getState()`       |
+| `getPriority()`    | 우선순위 반환 (1~10, 기본값: 5) | `thread.getPriority()`    |
+| `getThreadGroup()` | 스레드 그룹 반환                | `thread.getThreadGroup()` |
+
+### 스레드 우선순위 설정
+
+```java
+Thread thread = new Thread(new MyRunnable());
+thread.setPriority(Thread.MAX_PRIORITY);  // 최고 우선순위
+thread.start();
+```
+
+**우선순위 범위**: 1(최저) ~ 10(최고), 기본값은 5입니다.

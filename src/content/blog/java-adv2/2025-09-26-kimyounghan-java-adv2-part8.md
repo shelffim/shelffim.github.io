@@ -67,30 +67,3 @@ while (true) {
 ```
 
 **장점**: 여러 클라이언트 동시 처리 가능
-
-## 자원 관리
-
-### finally 블록의 문제점
-
-```java
-// ❌ 문제: 핵심 예외가 가려질 수 있음
-try {
-    // 네트워크 작업
-} finally {
-    socket.close();  // 새 예외 발생 시 핵심 예외 손실
-}
-```
-
-### try-with-resources (권장)
-
-```java
-// ✅ 해결: 자동 자원 관리
-try (Socket socket = new Socket("localhost", 8080)) {
-    // 네트워크 작업
-} // 자동으로 socket.close() 호출
-```
-
-**장점**:
-
-- 자동 자원 정리
-- 핵심 예외와 정리 예외 모두 추적 가능
